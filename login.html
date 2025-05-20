@@ -55,13 +55,14 @@
             font-size: 1rem;
         }
         .cta-btn {
-            width: 100%;
+            width: auto;
+            min-width: unset;
+            padding: 0.5rem 1.2rem;
             background: linear-gradient(90deg, #1976d2 60%, #64b5f6 100%);
             color: #fff;
             border: none;
-            padding: 1rem;
             border-radius: 8px;
-            font-size: 1.1rem;
+            font-size: 1rem;
             font-weight: 700;
             text-align: center;
             text-decoration: none;
@@ -70,18 +71,9 @@
         .cta-btn:hover {
             background: linear-gradient(90deg, #0d47a1 60%, #1976d2 100%);
         }
-        @media (max-width: 700px) {
-            .desktop-only { display: none !important; }
-        }
     </style>
 </head>
 <body>
-    <header>
-        <nav class="navbar desktop-only">
-            <div class="logo">TopoLearn</div>
-            <a href="login.html" class="cta-btn" style="margin-left:auto;">Connexion</a>
-        </nav>
-    </header>
     <div class="login-container" id="loginBox">
         <h2>Connexion à TopoLearn</h2>
         <div id="loginError" class="login-error" style="display:none;"></div>
