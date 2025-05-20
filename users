@@ -1,0 +1,15 @@
+# users
+# Format:
+# username: <username>
+# pswd: <password>
+# vip: <vip_level>
+# Example:
+# username: ahmed
+# pswd: user123
+# vip: 2
+# username: admin
+# pswd: thisappistopo
+# vip: 3
+# username: noura
+# pswd: heybebey01
+# vip: 1

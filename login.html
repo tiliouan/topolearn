@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connexion - TopoLearn</title>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .login-container {
+            max-width: 350px;
+            margin: 7vh auto 0 auto;
+            background: #fff;
+            border-radius: 16px;
+            box-shadow: 0 2px 16px rgba(21,101,192,0.10);
+            padding: 2.5rem 2rem 2rem 2rem;
+            text-align: center;
+        }
+        .login-container h2 {
+            margin-bottom: 2rem;
+        }
+        .login-container input {
+            width: 100%;
+            margin-bottom: 1.2rem;
+            padding: 0.9rem;
+            border-radius: 8px;
+            border: 1px solid #90caf9;
+            font-size: 1rem;
+        }
+        .login-container button {
+            width: 100%;
+            background: linear-gradient(90deg, #1976d2 60%, #64b5f6 100%);
+            color: #fff;
+            border: none;
+            padding: 1rem;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .login-container button:hover {
+            background: linear-gradient(90deg, #0d47a1 60%, #1976d2 100%);
+        }
+        .login-container .switch-link {
+            margin-top: 1.2rem;
+            display: block;
+            color: #1976d2;
+            text-decoration: underline;
+            cursor: pointer;
+        }
+        .login-error {
+            color: #d32f2f;
+            margin-bottom: 1rem;
+            font-size: 1rem;
+        }
+        .cta-btn {
+            width: 100%;
+            background: linear-gradient(90deg, #1976d2 60%, #64b5f6 100%);
+            color: #fff;
+            border: none;
+            padding: 1rem;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .cta-btn:hover {
+            background: linear-gradient(90deg, #0d47a1 60%, #1976d2 100%);
+        }
+        @media (max-width: 700px) {
+            .desktop-only { display: none !important; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar desktop-only">
+            <div class="logo">TopoLearn</div>
+            <a href="login.html" class="cta-btn" style="margin-left:auto;">Connexion</a>
+        </nav>
+    </header>
+    <div class="login-container" id="loginBox">
+        <h2>Connexion à TopoLearn</h2>
+        <div id="loginError" class="login-error" style="display:none;"></div>
+        <input type="text" id="loginUser" placeholder="Nom d'utilisateur" autocomplete="username">
+        <input type="password" id="loginPass" placeholder="Mot de passe" autocomplete="current-password">
+        <button onclick="loginTopoLearn()">Se connecter</button>
+        <span class="switch-link" onclick="showSignup()">Créer un compte</span>
+        <div style="margin-top:1.2rem;font-size:0.95rem;">
+            <b>Mot de passe oublié ou changement ?</b><br>
+            <a href="https://wa.me/212774225636" target="_blank" style="color:#1976d2;text-decoration:underline;">Contactez le support sur WhatsApp</a>
+        </div>
+    </div>
+    <div class="login-container" id="signupBox" style="display:none;">
+        <h2>Créer un compte</h2>
+        <div id="signupError" class="login-error" style="display:none;"></div>
+        <p style="font-size:0.98rem;margin-bottom:1rem;">Pour créer un compte, cliquez sur le bouton ci-dessous. Vous serez redirigé vers WhatsApp pour finaliser votre inscription avec un administrateur.</p>
+        <a href="https://wa.me/212774225636?text=Bonjour%2C+je+veux+cr%C3%A9er+un+compte+TopoLearn+!" target="_blank" class="cta-btn" style="display:block;margin-bottom:1.2rem;">S'inscrire via WhatsApp</a>
+        <span class="switch-link" onclick="showLogin()">Déjà un compte ? Se connecter</span>
+    </div>
+    <script>
+        function showSignup() {
+            document.getElementById('loginBox').style.display = 'none';
+            document.getElementById('signupBox').style.display = 'block';
+        }
+        function showLogin() {
+            document.getElementById('signupBox').style.display = 'none';
+            document.getElementById('loginBox').style.display = 'block';
+        }
+        function parseUsersFile(text) {
+            // Parse the users file format
+            const users = [];
+            let current = {};
+            text.split('\n').forEach(line => {
+                line = line.trim();
+                if(line.startsWith('# username:')) {
+                    if(current.username) users.push(current);
+                    current = { username: line.split(':')[1].trim() };
+                } else if(line.startsWith('# pswd:')) {
+                    current.pswd = line.split(':')[1].trim();
+                } else if(line.startsWith('# vip:')) {
+                    current.vip = line.split(':')[1].trim();
+                }
+            });
+            if(current.username) users.push(current);
+            return users;
+        }
+        function loginTopoLearn() {
+            var user = document.getElementById('loginUser').value.trim();
+            var pass = document.getElementById('loginPass').value.trim();
+            var error = document.getElementById('loginError');
+            error.style.display = 'none';
+            // Static users list
+            var users = [
+                { username: 'admin', pswd: 'thisappistopo', vip: '3' },
+                { username: 'noura', pswd: 'heybebey01', vip: '1' },
+                { username: 'ahmed', pswd: 'user123', vip: '2' }
+            ];
+            var found = users.find(u => u.username === user && u.pswd === pass);
+            if(found) {
+                localStorage.setItem('topolearn_user', JSON.stringify(found));
+                window.location.href = 'dashboard.html';
+            } else {
+                error.style.display = 'block';
+                error.textContent = 'Identifiants incorrects. Si vous n’avez pas de compte, cliquez sur "Créer un compte".';
+            }
+        }
+    </script>
+</body>
+</html>

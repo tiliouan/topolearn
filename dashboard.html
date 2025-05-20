@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - TopoLearn</title>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .dashboard-container {
+            max-width: 900px;
+            margin: 6vh auto 0 auto;
+            background: #f8fbff;
+            border-radius: 18px;
+            box-shadow: 0 2px 16px rgba(21,101,192,0.10);
+            padding: 2.5rem 2rem 2rem 2rem;
+        }
+        .dashboard-title {
+            text-align: center;
+            margin-bottom: 2.5rem;
+            color: #1565c0;
+        }
+        .dashboard-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            justify-content: center;
+        }
+        .dashboard-card {
+            background: linear-gradient(135deg, #e3f2fd 60%, #fff 100%);
+            border-radius: 16px;
+            box-shadow: 0 2px 12px rgba(21,101,192,0.08);
+            padding: 2rem 1.5rem;
+            min-width: 220px;
+            max-width: 320px;
+            text-align: center;
+            transition: transform 0.2s, box-shadow 0.2s;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .dashboard-card:hover {
+            transform: translateY(-6px) scale(1.04);
+            box-shadow: 0 8px 32px rgba(21,101,192,0.13);
+        }
+        .dashboard-card h3 {
+            color: #1976d2;
+            margin-bottom: 1rem;
+        }
+        @media (max-width: 700px) {
+            .dashboard-container {
+                padding: 1.2rem 0.2rem;
+            }
+            .dashboard-grid {
+                flex-direction: column;
+                gap: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard-container">
+        <h2 class="dashboard-title">Bienvenue sur votre Dashboard TopoLearn</h2>
+        <button id="logoutBtn" style="float:right;margin-bottom:1.5rem;background:#d32f2f;color:#fff;padding:0.7rem 1.5rem;border:none;border-radius:8px;font-weight:700;cursor:pointer;">Déconnexion</button>
+        <div class="dashboard-grid">
+            <a class="dashboard-card" href="videos.html">
+                <h3>Vidéos</h3>
+                <p>Accédez à toutes les vidéos de formation en topographie.</p>
+            </a>
+            <a class="dashboard-card" href="leassons.html">
+                <h3>Leçons</h3>
+                <p>Consultez les leçons détaillées et supports PDF.</p>
+            </a>
+            <a class="dashboard-card" href="support.html">
+                <h3>Support</h3>
+                <p>Contactez l'assistance ou posez vos questions.</p>
+            </a>
+            <a class="dashboard-card" href="mysubscription.html">
+                <h3>Mon abonnement</h3>
+                <p>Gérez votre formule VIP et vos informations d'abonnement.</p>
+            </a>
+        </div>
+    </div>
+    <script>
+        // Logout logic
+        document.getElementById('logoutBtn').onclick = function() {
+            localStorage.removeItem('topolearn_user');
+            window.location.href = 'login.html';
+        };
+
+        // Show username and VIP in dashboard title if logged in
+        function showUserInfo() {
+            var user = null;
+            try {
+                user = JSON.parse(localStorage.getItem('topolearn_user'));
+            } catch(e) {}
+            if(user) {
+                var title = document.querySelector('.dashboard-title');
+                title.innerHTML = 'Bienvenue ' + user.username + ' (VIP ' + user.vip + ') sur votre Dashboard TopoLearn';
+            }
+        }
+        showUserInfo();
+
+        // Simple card hover animation (pulse)
+        document.querySelectorAll('.dashboard-card').forEach(function(card) {
+            card.addEventListener('mouseenter', function() {
+                card.style.transform = 'scale(1.06)';
+                card.style.boxShadow = '0 12px 32px rgba(21,101,192,0.18)';
+            });
+            card.addEventListener('mouseleave', function() {
+                card.style.transform = '';
+                card.style.boxShadow = '';
+            });
+        });
+
+        // Responsive: collapse dashboard cards into a carousel on mobile
+        function enableCarouselOnMobile() {
+            if(window.innerWidth < 600) {
+                var grid = document.querySelector('.dashboard-grid');
+                grid.style.overflowX = 'auto';
+                grid.style.flexWrap = 'nowrap';
+                grid.style.gap = '1rem';
+                grid.querySelectorAll('.dashboard-card').forEach(function(card) {
+                    card.style.minWidth = '80vw';
+                    card.style.maxWidth = '90vw';
+                });
+            }
+        }
+        enableCarouselOnMobile();
+        window.addEventListener('resize', enableCarouselOnMobile);
+
+        // Redirect to user-specific dashboard after login
+        (function() {
+            var user = null;
+            try { user = JSON.parse(localStorage.getItem('topolearn_user')); } catch(e){}
+            if(user && user.username) {
+                var username = user.username.toLowerCase();
+                // If already on user dashboard, do nothing
+                if(!window.location.pathname.includes('/' + username + '/dashboard.html')) {
+                    window.location.href = username + '/dashboard.html';
+                }
+            }
+        })();
+    </script>
+</body>
+</html>

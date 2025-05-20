@@ -1,16 +1,153 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="fr">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width">
-  <title>replit</title>
-  <link href="style.css" rel="stylesheet" type="text/css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TopoLearn - Plateforme d'apprentissage en topographie</title>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-  Hello world
-  <script src="script.js"></script>
+    <header>
+        <nav class="navbar" style="display: flex; align-items: center; justify-content: space-between;">
+            <div class="logo">TopoLearn</div>
+            <a href="login.html" class="cta-btn">Connexion</a>
+        </nav>
+    </header>
+    <main>
+        <!-- Slide 1: Introduction & Problème à résoudre -->
+        <section id="accueil" class="section accueil">
+            <div class="container">
+                <h1>TopoLearn - Plateforme Marocaine d'Apprentissage de la Topographie</h1>
+                <div class="problem">
+                    <h3>Problème à résoudre</h3>
+                    <ul>
+                        <li>Difficile de trouver des cours clairs et structurés sur la topographie au Maroc</li>
+                        <li>Tutoriels logiciels souvent en anglais, mal expliqués, ou pas adaptés à nos réalités</li>
+                        <li>Pas de support technique pour les étudiants qui bloquent lors de l'installation</li>
+                    </ul>
+                </div>
+                <a href="#solution" class="cta-btn">Découvrir la solution</a>
+            </div>
+        </section>
+        <!-- Slide 3: Solution -->
+        <section id="solution" class="section solution">
+            <div class="container">
+                <h2>La Solution : TopoLearn</h2>
+                <ul class="features-list">
+                    <li>Cours vidéos en français et darija</li>
+                    <li>Guides d'installation de logiciels (AutoCAD, QGIS, Civil 3D...)</li>
+                    <li>Support VIP pour aider à distance les utilisateurs</li>
+                    <li>Système de membres (gratuit et VIP)</li>
+                </ul>
+            </div>
+        </section>
+        <!-- Slide 4: Fonctionnalités principales -->
+        <section id="fonctionnalites" class="section fonctionnalites">
+            <div class="container">
+                <h2>Fonctionnalités principales</h2>
+                <ul class="features-list">
+                    <li>Cours classés par niveau : Débutant, Intermédiaire, Avancé</li>
+                    <li>Vidéos + PDFs + exercices pratiques</li>
+                    <li>Centre de support technique : chat + assistance à distance (TeamViewer)</li>
+                    <li>Interface moderne, adaptée à mobile (responsive)</li>
+                </ul>
+            </div>
+        </section>
+        <!-- Slide 5: Membre VIP -->
+        <section id="formules" class="section formules">
+            <div class="container">
+                <h2>Membre VIP</h2>
+                <div class="cards">
+                    <div class="card" data-vip="VIP I">
+                        <h3>VIP I</h3>
+                        <p>Accès à tous les cours, guides exclusifs, assistance personnalisée, mises à jour prioritaires</p>
+                        <span class="price">199 MAD/mois</span>
+                    </div>
+                    <div class="card" data-vip="VIP II">
+                        <h3>VIP II</h3>
+                        <p>Tout VIP I + Formations privées en petits groupes, support technique avancé</p>
+                        <span class="price">499 MAD/mois</span>
+                    </div>
+                    <div class="card" data-vip="VIP 3">
+                        <h3>VIP 3</h3>
+                        <p>Tout VIP II + Coaching individuel, accès aux événements exclusifs, priorisation totale du support</p>
+                        <span class="price">999 MAD/mois</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Slide 6: Adaptation au Maroc -->
+        <section id="adaptation" class="section adaptation">
+            <div class="container">
+                <h2>Adaptation au Maroc</h2>
+                <ul class="features-list">
+                    <li>Vidéos sous-titrées en français et arabe marocain</li>
+                    <li>Exemples de projets réels au Maroc (Casablanca, Rabat, Oujda...)</li>
+                    <li>Paiement par CIH, CashPlus, PayPal, Orange Money, WhatsApp</li>
+                </ul>
+            </div>
+        </section>
+        <!-- Slide 8: Objectif du Projet -->
+        <section id="objectif" class="section objectif">
+            <div class="container">
+                <h2>Objectif du Projet</h2>
+                <p>Ce projet participe au concours pour une opportunité de stage.<br>
+                Mon objectif : proposer une plateforme utile, locale, moderne et réaliste qui pourra aider les étudiants marocains en topographie à mieux apprendre et évoluer dans leur carrière.</p>
+            </div>
+        </section>
+        <section id="formations" class="section formations">
+            <div class="container">
+                <h2>Formations Privées</h2>
+                <p>Des sessions personnalisées pour approfondir vos connaissances en topographie, animées par des experts du domaine.</p>
+            </div>
+        </section>
+        <section id="temoignages" class="section temoignages">
+            <div class="container">
+                <h2>Témoignages</h2>
+                <div class="testimonials">
+                    <blockquote>
+                        "Grâce à TopoLearn, j'ai réussi mon examen de topographie !"<br><span>- Yassine, Casablanca</span>
+                    </blockquote>
+                    <blockquote>
+                        "Les formations privées sont très enrichissantes et adaptées à mon niveau."<br><span>- Salma, Rabat</span>
+                    </blockquote>
+                </div>
+            </div>
+        </section>
+        <section id="contact" class="section contact">
+            <div class="container">
+                <h2>Contact & Assistance</h2>
+                <form id="contactForm">
+                    <input type="text" id="contactName" placeholder="Votre nom" required>
+                    <input type="email" id="contactEmail" placeholder="Votre email" required>
+                    <textarea id="contactMsg" placeholder="Votre message" required></textarea>
+                    <button type="submit">Envoyer</button>
+                </form>
+                <script>
+                    document.getElementById('contactForm').addEventListener('submit', function(e) {
+                        e.preventDefault();
+                        var name = document.getElementById('contactName').value.trim();
+                        var email = document.getElementById('contactEmail').value.trim();
+                        var msg = document.getElementById('contactMsg').value.trim();
+                        var whatsappNumber = '212774225636';
+                        var text = encodeURIComponent('Nom: ' + name + '\nEmail: ' + email + '\nMessage: ' + msg);
+                        var waUrl = 'https://wa.me/' + whatsappNumber + '?text=' + text;
+                        window.open(waUrl, '_blank');
+                    });
+                </script>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 TopoLearn. Tous droits réservés.</p>
+            <p class="footer-owners">Site réalisé par <b>Noura ait brahim</b> &amp; <b>Ikram ait brahim</b></p>
+        </div>
+    </footer>
+    <a href="https://wa.me/212774225636" class="whatsapp-float" target="_blank" aria-label="Contact WhatsApp">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" />
+    </a>
+    <script src="script.js"></script>
 </body>
-
 </html>
