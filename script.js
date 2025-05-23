@@ -110,3 +110,14 @@ function displayUserInfo(selector) {
         el.textContent = user.username + ' (VIP ' + user.vip + ')';
     }
 }
+
+// Session check utility
+function checkLogin(redirectTo) {
+    if (localStorage.getItem('topolearn_logged_in') !== 'true') {
+        window.location.href = redirectTo || 'login.html';
+    }
+}
+function logout() {
+    localStorage.removeItem('topolearn_logged_in');
+    window.location.href = 'login.html';
+}

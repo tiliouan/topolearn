@@ -20,9 +20,189 @@
             color: #1976d2;
             margin-bottom: 1.5rem;
         }
+        header {
+            background-color: #1976d2;
+            padding: 0.5rem 1rem;
+            color: white;
+        }
+        .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .logo img {
+            height: 48px;
+            vertical-align: middle;
+        }
+        .lang-btn {
+            background: none;
+            border: 1px solid white;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .lang-btn:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
     </style>
 </head>
 <body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <img src="logo.png" alt="TopoLearn Logo"> TopoLearn
+            </div>
+            <div style="display:flex;align-items:center;gap:0.5rem;">
+                <button class="lang-btn" onclick="setLang('fr')">FR</button>
+                <button class="lang-btn" onclick="setLang('ar')">AR</button>
+                <button class="lang-btn" onclick="setLang('en')">EN</button>
+            </div>
+        </nav>
+    </header>
+    <script>
+        const translations = {
+            fr: {
+                title: "Mon abonnement - TopoLearn",
+                heading: "Formules VIP",
+                subheading1: "VIP 1 – Niveau Débutant 🎓",
+                subheading2: "VIP 2 – Niveau Intermédiaire",
+                subheading3: "VIP 3 – Formule Avancée",
+                pricing: "Tarifs & Services Additionnels",
+                installRemote: "Installation à distance",
+                installUSB: "Installation par USB",
+                softwareExplanation: "Explication des logiciels",
+                monthlySubscription: "Abonnements mensuels",
+                trainingCenter: "Centre de formation",
+                benefits: "Comprend tous les avantages du VIP 1",
+                assistance: "Assistance directe via WhatsApp",
+                pdfFiles: "Fichiers PDF pour chaque séance",
+                reportTemplates: "Modèles de rapports de stage en topographie",
+                liveTraining: "Formations en direct – en individuel ou en groupe",
+                technicalSupport: "Support technique pour l’installation des logiciels topographiques",
+                advancedPreparation: "Préparation à un niveau avancé ou au marché de l’emploi",
+                detailedVideos: "Vidéos explicatives détaillées et pédagogiques",
+                completeRemoteSupport: "Assistance à distance complète (Zoom / TeamViewer)",
+                personalizedFollowUp: "Suivi personnalisé du projet de fin de formation",
+                multilingualCourses: "Cours multilingues : français, darija marocaine, etc.",
+                monthlyTechnicalSupport: "Assistance technique mensuelle (TeamViewer / Zoom)",
+                unlimitedAccess: "Accès illimité aux vidéos et aux contenus pédagogiques",
+                correctedExercises: "Exercices corrigés pour évaluer la progression",
+                advancedTools: "Maîtrise d’outils avancés : AutoCAD, QGIS, CIVIL 3D, Robot Structural, etc.",
+                reportWritingSupport: "Accompagnement à la rédaction du rapport de fin de formation",
+                examPreparation: "Préparation de l’examen de Fin de Formation",
+                usbKey: "Clé USB : Support de stockage remis à l’apprenant sur demande, contenant les logiciels pédagogiques (AutoCAD, QGIS, CIVIL 3D…) et les documents à installer localement ou via assistance à distance",
+                vip1Price: "199 DH",
+                vip2Price: "499 DH",
+                vip3Price: "1000 DH",
+                trainingCenterPrice: "1000 DH",
+                includedBenefits: "incluant les avantages de la formule par le mois."
+            },
+            en: {
+                title: "My Subscription - TopoLearn",
+                heading: "VIP Plans",
+                subheading1: "VIP 1 – Beginner Level 🎓",
+                subheading2: "VIP 2 – Intermediate Level",
+                subheading3: "VIP 3 – Advanced Plan",
+                pricing: "Pricing & Additional Services",
+                installRemote: "Remote Installation",
+                installUSB: "USB Installation",
+                softwareExplanation: "Software Explanation",
+                monthlySubscription: "Monthly Subscriptions",
+                trainingCenter: "Training Center",
+                benefits: "Includes all the benefits of VIP 1",
+                assistance: "Direct assistance via WhatsApp",
+                pdfFiles: "PDF files for each session",
+                reportTemplates: "Internship report templates in topography",
+                liveTraining: "Live training – individual or group",
+                technicalSupport: "Technical support for installing topographic software",
+                advancedPreparation: "Preparation for an advanced level or the job market",
+                detailedVideos: "Detailed and educational explanatory videos",
+                completeRemoteSupport: "Comprehensive remote assistance (Zoom / TeamViewer)",
+                personalizedFollowUp: "Personalized follow-up of the end-of-training project",
+                multilingualCourses: "Multilingual courses: French, Moroccan Darija, etc.",
+                monthlyTechnicalSupport: "Monthly technical assistance (TeamViewer / Zoom)",
+                unlimitedAccess: "Unlimited access to videos and educational content",
+                correctedExercises: "Corrected exercises to evaluate progress",
+                advancedTools: "Mastery of advanced tools: AutoCAD, QGIS, CIVIL 3D, Robot Structural, etc.",
+                reportWritingSupport: "Support for writing the end-of-training report",
+                examPreparation: "Preparation for the End of Training exam",
+                usbKey: "USB key: Storage support provided to the learner on request, containing educational software (AutoCAD, QGIS, CIVIL 3D…) and documents to be installed locally or via remote assistance",
+                vip1Price: "199 DH",
+                vip2Price: "499 DH",
+                vip3Price: "1000 DH",
+                trainingCenterPrice: "1000 DH",
+                includedBenefits: "including the benefits of the formula per month."
+            },
+            ar: {
+                title: "اشتراكي - توبوليرن",
+                heading: "خطط VIP",
+                subheading1: "VIP 1 – مستوى مبتدئ 🎓",
+                subheading2: "VIP 2 – مستوى متوسط",
+                subheading3: "VIP 3 – خطة متقدمة",
+                pricing: "التسعير والخدمات الإضافية",
+                installRemote: "التثبيت عن بُعد",
+                installUSB: "تثبيت عبر USB",
+                softwareExplanation: "شرح البرامج",
+                monthlySubscription: "الاشتراكات الشهرية",
+                trainingCenter: "مركز التدريب",
+                benefits: "يشمل جميع مزايا VIP 1",
+                assistance: "مساعدة مباشرة عبر WhatsApp",
+                pdfFiles: "ملفات PDF لكل جلسة",
+                reportTemplates: "قوالب تقارير التدريب في الطبوغرافيا",
+                liveTraining: "تدريب مباشر - فردي أو جماعي",
+                technicalSupport: "دعم فني لتثبيت البرامج الطبوغرافية",
+                advancedPreparation: "التحضير لمستوى متقدم أو لسوق العمل",
+                detailedVideos: "فيديوهات توضيحية مفصلة وتعليمية",
+                completeRemoteSupport: "دعم شامل عن بُعد (Zoom / TeamViewer)",
+                personalizedFollowUp: "متابعة شخصية لمشروع نهاية التدريب",
+                multilingualCourses: "دورات متعددة اللغات: الفرنسية، الدارجة المغربية، إلخ.",
+                monthlyTechnicalSupport: "مساعدة فنية شهرية (TeamViewer / Zoom)",
+                unlimitedAccess: "وصول غير محدود للفيديوهات والمحتوى التعليمي",
+                correctedExercises: "تمارين مصححة لتقييم التقدم",
+                advancedTools: "إتقان أدوات متقدمة: AutoCAD، QGIS، CIVIL 3D، Robot Structural، إلخ.",
+                reportWritingSupport: "دعم في كتابة تقرير نهاية التدريب",
+                examPreparation: "التحضير لامتحان نهاية التدريب",
+                usbKey: "مفتاح USB: دعم تخزين يُقدم للمتعلم عند الطلب، يحتوي على البرامج التعليمية (AutoCAD، QGIS، CIVIL 3D…) والمستندات التي يجب تثبيتها محليًا أو عبر الدعم عن بُعد",
+                vip1Price: "199 درهم",
+                vip2Price: "499 درهم",
+                vip3Price: "1000 درهم",
+                trainingCenterPrice: "1000 درهم",
+                includedBenefits: "بما في ذلك مزايا الخطة شهريًا."
+            }
+        };
+        function setLang(lang) {
+            localStorage.setItem('topolearn_lang', lang);
+            applyLang(lang);
+        }
+        function applyLang(lang) {
+            document.title = translations[lang].title;
+            document.querySelector('h2').textContent = translations[lang].heading;
+            document.querySelector('.vip1 h3').textContent = translations[lang].subheading1;
+            document.querySelector('.vip2 h3').textContent = translations[lang].subheading2;
+            document.querySelector('.vip3 h3').textContent = translations[lang].subheading3;
+            document.querySelector('.vip-pricing h3').textContent = translations[lang].pricing;
+            document.querySelector('.vip-pricing ul').children[0].innerHTML = translations[lang].installRemote + ' : <strong>' + translations[lang].installRemotePrice + '</strong>';
+            document.querySelector('.vip-pricing ul').children[1].innerHTML = translations[lang].installUSB + ' : <strong>' + translations[lang].installUSBPrice + '</strong>';
+            document.querySelector('.vip-pricing ul').children[2].innerHTML = translations[lang].softwareExplanation + ' : <strong>' + translations[lang].softwareExplanationPrice + '</strong>';
+            document.querySelector('.vip-pricing h4').textContent = translations[lang].monthlySubscription;
+            document.querySelector('.vip-pricing h4 + ul').children[0].innerHTML = 'VIP 1 – Niveau Débutant : <strong>' + translations[lang].vip1Price + '</strong>';
+            document.querySelector('.vip-pricing h4 + ul').children[1].innerHTML = 'VIP 2 – Niveau Intermédiaire : <strong>' + translations[lang].vip2Price + '</strong>';
+            document.querySelector('.vip-pricing h4 + ul').children[2].innerHTML = 'VIP 3 – Niveau Avancé : <strong>' + translations[lang].vip3Price + '</strong>';
+            document.querySelector('.vip-pricing h4 + p').innerHTML = 'L’abonnement mensuel sera de <strong>' + translations[lang].trainingCenterPrice + '</strong>, ' + translations[lang].includedBenefits;
+            if(lang === 'ar') {
+                document.body.dir = 'rtl';
+                document.body.style.textAlign = 'right';
+            } else {
+                document.body.dir = 'ltr';
+                document.body.style.textAlign = '';
+            }
+        }
+        window.onload = function() {
+            const lang = localStorage.getItem('topolearn_lang') || 'fr';
+            applyLang(lang);
+        };
+    </script>
     <div class="subscription-container">
         <h2>Formules VIP</h2>
         <div class="vip-level vip1">

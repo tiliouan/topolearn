@@ -14,20 +14,47 @@
         .dashboard-card:hover { transform: translateY(-6px) scale(1.04); box-shadow: 0 8px 32px rgba(21,101,192,0.13); }
         .dashboard-card h3 { color: #1976d2; margin-bottom: 1rem; }
         @media (max-width: 700px) { .dashboard-container { padding: 1.2rem 0.2rem; } .dashboard-grid { flex-direction: column; gap: 1.2rem; } }
+        .lang-btn {
+            background: #e3f2fd;
+            color: #1976d2;
+            border: 1px solid #90caf9;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            font-weight: 700;
+            padding: 0.3rem 0.7rem;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .lang-btn:hover {
+            background: #1976d2;
+            color: #fff;
+        }
     </style>
 </head>
 <body>
+    <header>
+        <nav class="navbar" style="display: flex; align-items: center; justify-content: space-between;">
+            <div class="logo">
+                <img src="../logo.png" alt="TopoLearn Logo" style="height:48px;vertical-align:middle;"> TopoLearn
+            </div>
+            <div style="display:flex;align-items:center;gap:0.5rem;">
+                <button class="lang-btn" onclick="setLang('fr')">FR</button>
+                <button class="lang-btn" onclick="setLang('ar')">AR</button>
+                <button class="lang-btn" onclick="setLang('en')">EN</button>
+                <button id="logoutBtn" style="background:#d32f2f;color:#fff;padding:0.7rem 1.5rem;border:none;border-radius:8px;font-weight:700;cursor:pointer;margin-left:1rem;" onclick="logout()">Déconnexion</button>
+            </div>
+        </nav>
+    </header>
     <div class="dashboard-container">
         <h2 class="dashboard-title">Bienvenue Noura sur votre Dashboard TopoLearn</h2>
-        <button id="logoutBtn" style="float:right;margin-bottom:1.5rem;background:#d32f2f;color:#fff;padding:0.7rem 1.5rem;border:none;border-radius:8px;font-weight:700;cursor:pointer;">Déconnexion</button>
         <div class="dashboard-grid">
-            <a class="dashboard-card" href="../videos.html">
+            <a class="dashboard-card" href="https://drive.google.com/drive/folders/USER_VIDEOS_FOLDER_ID" target="_blank">
                 <h3>Vidéos</h3>
-                <p>Vidéos personnalisées pour Noura.</p>
+                <p>Accédez à toutes vos vidéos de formation sur Google Drive.</p>
             </a>
-            <a class="dashboard-card" href="../leassons.html">
+            <a class="dashboard-card" href="https://drive.google.com/drive/folders/1OQSg-UW5sKvV9J_rMVHCh1Rz6SF_FA3V?usp=sharing" target="_blank">
                 <h3>Leçons</h3>
-                <p>Leçons et supports PDF adaptés à Noura.</p>
+                <p>Consultez vos leçons et supports PDF sur Google Drive.</p>
             </a>
             <a class="dashboard-card" href="../support.html">
                 <h3>Support</h3>
@@ -40,10 +67,67 @@
         </div>
     </div>
     <script>
-        document.getElementById('logoutBtn').onclick = function() {
-            localStorage.removeItem('topolearn_user');
+        if (localStorage.getItem('topolearn_logged_in') !== 'true') {
             window.location.href = '../login.html';
+        }
+        const translations = {
+            fr: {
+                title: "Dashboard de Noura - TopoLearn",
+                heading: "Bienvenue Noura sur votre Dashboard TopoLearn",
+                logout: "Déconnexion",
+                videos: "Vidéos",
+                lessons: "Leçons",
+                support: "Support",
+                sub: "Mon abonnement"
+            },
+            en: {
+                title: "Noura's Dashboard - TopoLearn",
+                heading: "Welcome Noura to your TopoLearn Dashboard",
+                logout: "Logout",
+                videos: "Videos",
+                lessons: "Lessons",
+                support: "Support",
+                sub: "My Subscription"
+            },
+            ar: {
+                title: "لوحة نورا - توبوليرن",
+                heading: "مرحبًا نورا في لوحة تحكم توبوليرن",
+                logout: "تسجيل الخروج",
+                videos: "فيديوهات",
+                lessons: "دروس",
+                support: "الدعم",
+                sub: "اشتراكي"
+            }
         };
+        function setLang(lang) {
+            localStorage.setItem('topolearn_lang', lang);
+            applyLang(lang);
+        }
+        function applyLang(lang) {
+            document.title = translations[lang].title;
+            document.querySelector('.dashboard-title').textContent = translations[lang].heading;
+            document.getElementById('logoutBtn').textContent = translations[lang].logout;
+            const cards = document.querySelectorAll('.dashboard-card h3');
+            cards[0].textContent = translations[lang].videos;
+            cards[1].textContent = translations[lang].lessons;
+            cards[2].textContent = translations[lang].support;
+            cards[3].textContent = translations[lang].sub;
+            if(lang === 'ar') {
+                document.body.dir = 'rtl';
+                document.body.style.textAlign = 'right';
+            } else {
+                document.body.dir = 'ltr';
+                document.body.style.textAlign = '';
+            }
+        }
+        window.onload = function() {
+            const lang = localStorage.getItem('topolearn_lang') || 'fr';
+            applyLang(lang);
+        };
+        function logout() {
+            localStorage.removeItem('topolearn_logged_in');
+            window.location.href = '../login.html';
+        }
     </script>
 </body>
 </html>

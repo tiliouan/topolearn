@@ -71,9 +71,43 @@
         .cta-btn:hover {
             background: linear-gradient(90deg, #0d47a1 60%, #1976d2 100%);
         }
+        .navbar {
+            padding: 1rem;
+            background-color: #1976d2;
+            color: white;
+            position: relative;
+        }
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+        .lang-btn {
+            background: none;
+            border: 1px solid white;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .lang-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
     </style>
 </head>
 <body>
+    <header>
+        <nav class="navbar" style="display: flex; align-items: center; justify-content: space-between;">
+            <div class="logo">
+                <img src="logo.png" alt="TopoLearn Logo" style="height:48px;vertical-align:middle;"> TopoLearn
+            </div>
+            <div style="display:flex;align-items:center;gap:0.5rem;">
+                <button class="lang-btn" onclick="setLang('fr')">FR</button>
+                <button class="lang-btn" onclick="setLang('ar')">AR</button>
+                <button class="lang-btn" onclick="setLang('en')">EN</button>
+            </div>
+        </nav>
+    </header>
     <div class="login-container" id="loginBox">
         <h2>Connexion à TopoLearn</h2>
         <div id="loginError" class="login-error" style="display:none;"></div>
@@ -94,6 +128,55 @@
         <span class="switch-link" onclick="showLogin()">Déjà un compte ? Se connecter</span>
     </div>
     <script>
+        // Redirect if already logged in
+        if (localStorage.getItem('topolearn_logged_in') === 'true') {
+            window.location.href = 'dashboard.html';
+        }
+        const translations = {
+            fr: {
+                title: "Connexion - TopoLearn",
+                heading: "Connexion à TopoLearn",
+                user: "Nom d'utilisateur",
+                pass: "Mot de passe",
+                btn: "Se connecter"
+            },
+            en: {
+                title: "Login - TopoLearn",
+                heading: "Login to TopoLearn",
+                user: "Username",
+                pass: "Password",
+                btn: "Login"
+            },
+            ar: {
+                title: "تسجيل الدخول - توبوليرن",
+                heading: "تسجيل الدخول إلى توبوليرن",
+                user: "اسم المستخدم",
+                pass: "كلمة المرور",
+                btn: "تسجيل الدخول"
+            }
+        };
+        function setLang(lang) {
+            localStorage.setItem('topolearn_lang', lang);
+            applyLang(lang);
+        }
+        function applyLang(lang) {
+            document.title = translations[lang].title;
+            document.querySelector('h2').textContent = translations[lang].heading;
+            document.getElementById('loginUser').placeholder = translations[lang].user;
+            document.getElementById('loginPass').placeholder = translations[lang].pass;
+            document.querySelector('.login-container button').textContent = translations[lang].btn;
+            if(lang === 'ar') {
+                document.body.dir = 'rtl';
+                document.body.style.textAlign = 'right';
+            } else {
+                document.body.dir = 'ltr';
+                document.body.style.textAlign = '';
+            }
+        }
+        window.onload = function() {
+            const lang = localStorage.getItem('topolearn_lang') || 'fr';
+            applyLang(lang);
+        };
         function showSignup() {
             document.getElementById('loginBox').style.display = 'none';
             document.getElementById('signupBox').style.display = 'block';
@@ -134,6 +217,7 @@
             var found = users.find(u => u.username === user && u.pswd === pass);
             if(found) {
                 localStorage.setItem('topolearn_user', JSON.stringify(found));
+                localStorage.setItem('topolearn_logged_in', 'true');
                 window.location.href = 'dashboard.html';
             } else {
                 error.style.display = 'block';

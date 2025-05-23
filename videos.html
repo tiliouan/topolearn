@@ -23,13 +23,94 @@
         .vip-required .cta-btn {
             margin-top: 1.5rem;
         }
+        header {
+            background-color: #f8f9fa;
+            padding: 0.5rem 1rem;
+            border-bottom: 1px solid #dee2e6;
+        }
+        .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .logo img {
+            height: 48px;
+            vertical-align: middle;
+        }
+        .lang-btn {
+            background: none;
+            border: 1px solid #007bff;
+            color: #007bff;
+            padding: 0.375rem 0.75rem;
+            border-radius: 0.25rem;
+            cursor: pointer;
+        }
+        .lang-btn:hover {
+            background-color: #007bff;
+            color: white;
+        }
     </style>
 </head>
 <body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <img src="logo.png" alt="TopoLearn Logo"> TopoLearn
+            </div>
+            <div style="display:flex;align-items:center;gap:0.5rem;">
+                <button class="lang-btn" onclick="setLang('fr')">FR</button>
+                <button class="lang-btn" onclick="setLang('ar')">AR</button>
+                <button class="lang-btn" onclick="setLang('en')">EN</button>
+            </div>
+        </nav>
+    </header>
     <div class="vip-required">
         <h2>Accès réservé aux membres VIP</h2>
         <p>Pour accéder aux vidéos, vous devez avoir un abonnement VIP.</p>
         <a href="https://wa.me/212774225636" class="cta-btn" target="_blank">Contactez-nous sur WhatsApp</a>
     </div>
+    <script>
+        const translations = {
+            fr: {
+                title: "Vidéos - TopoLearn",
+                heading: "Accès réservé aux membres VIP",
+                desc: "Pour accéder aux vidéos, vous devez avoir un abonnement VIP.",
+                btn: "Contactez-nous sur WhatsApp"
+            },
+            en: {
+                title: "Videos - TopoLearn",
+                heading: "Access reserved for VIP members",
+                desc: "To access videos, you must have a VIP subscription.",
+                btn: "Contact us on WhatsApp"
+            },
+            ar: {
+                title: "الفيديوهات - توبوليرن",
+                heading: "الدخول مخصص للأعضاء VIP",
+                desc: "للوصول إلى الفيديوهات يجب أن يكون لديك اشتراك VIP.",
+                btn: "اتصل بنا على واتساب"
+            }
+        };
+        function setLang(lang) {
+            localStorage.setItem('topolearn_lang', lang);
+            applyLang(lang);
+        }
+        function applyLang(lang) {
+            document.title = translations[lang].title;
+            document.querySelector('h2').textContent = translations[lang].heading;
+            document.querySelector('.vip-required p').textContent = translations[lang].desc;
+            document.querySelector('.vip-required a').textContent = translations[lang].btn;
+            if(lang === 'ar') {
+                document.body.dir = 'rtl';
+                document.body.style.textAlign = 'right';
+            } else {
+                document.body.dir = 'ltr';
+                document.body.style.textAlign = '';
+            }
+        }
+        window.onload = function() {
+            const lang = localStorage.getItem('topolearn_lang') || 'fr';
+            applyLang(lang);
+        };
+    </script>
 </body>
 </html>

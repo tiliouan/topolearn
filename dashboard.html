@@ -46,6 +46,32 @@
             color: #1976d2;
             margin-bottom: 1rem;
         }
+        .navbar {
+            background: #fff;
+            padding: 1rem 2rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            border-radius: 0 0 18px 18px;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .logo img {
+            height: 40px;
+            margin-right: 0.5rem;
+        }
+        .lang-btn {
+            background: #e3f2fd;
+            border: none;
+            border-radius: 8px;
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            font-weight: 500;
+            transition: background 0.3s;
+        }
+        .lang-btn:hover {
+            background: #d1e8ff;
+        }
         @media (max-width: 700px) {
             .dashboard-container {
                 padding: 1.2rem 0.2rem;
@@ -58,9 +84,21 @@
     </style>
 </head>
 <body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <img src="logo.png" alt="TopoLearn Logo"> TopoLearn
+            </div>
+            <div style="display:flex;align-items:center;gap:0.5rem;">
+                <button class="lang-btn" onclick="setLang('fr')">FR</button>
+                <button class="lang-btn" onclick="setLang('ar')">AR</button>
+                <button class="lang-btn" onclick="setLang('en')">EN</button>
+                <button id="logoutBtn" style="background:#d32f2f;color:#fff;padding:0.7rem 1.5rem;border:none;border-radius:8px;font-weight:700;cursor:pointer;margin-left:1rem;" onclick="logout()">Déconnexion</button>
+            </div>
+        </nav>
+    </header>
     <div class="dashboard-container">
         <h2 class="dashboard-title">Bienvenue sur votre Dashboard TopoLearn</h2>
-        <button id="logoutBtn" style="float:right;margin-bottom:1.5rem;background:#d32f2f;color:#fff;padding:0.7rem 1.5rem;border:none;border-radius:8px;font-weight:700;cursor:pointer;">Déconnexion</button>
         <div class="dashboard-grid">
             <a class="dashboard-card" href="videos.html">
                 <h3>Vidéos</h3>
@@ -81,7 +119,64 @@
         </div>
     </div>
     <script>
+        // Redirect to login if not logged in
+        if (localStorage.getItem('topolearn_logged_in') !== 'true') {
+            window.location.href = 'login.html';
+        }
         // Logout logic
+        function logout() {
+            localStorage.removeItem('topolearn_logged_in');
+            window.location.href = 'login.html';
+        }
+
+        const translations = {
+            fr: {
+                title: "Dashboard - TopoLearn",
+                heading: "Bienvenue sur votre Dashboard TopoLearn",
+                logout: "Déconnexion",
+                videos: "Vidéos",
+                lessons: "Leçons",
+                support: "Support",
+                sub: "Mon abonnement"
+            },
+            en: {
+                title: "Dashboard - TopoLearn",
+                heading: "Welcome to your TopoLearn Dashboard",
+                logout: "Logout",
+                videos: "Videos",
+                lessons: "Lessons",
+                support: "Support",
+                sub: "My Subscription"
+            },
+            ar: {
+                title: "لوحة التحكم - توبوليرن",
+                heading: "مرحبًا بك في لوحة تحكم توبوليرن",
+                logout: "تسجيل الخروج",
+                videos: "فيديوهات",
+                lessons: "دروس",
+                support: "الدعم",
+                sub: "اشتراكي"
+            }
+        };
+        function setLang(lang) {
+            document.title = translations[lang].title;
+            document.querySelector('.dashboard-title').textContent = translations[lang].heading;
+            document.getElementById('logoutBtn').textContent = translations[lang].logout;
+            const cards = document.querySelectorAll('.dashboard-card h3');
+            cards[0].textContent = translations[lang].videos;
+            cards[1].textContent = translations[lang].lessons;
+            cards[2].textContent = translations[lang].support;
+            cards[3].textContent = translations[lang].sub;
+            if(lang === 'ar') {
+                document.body.dir = 'rtl';
+                document.body.style.textAlign = 'right';
+            } else {
+                document.body.dir = 'ltr';
+                document.body.style.textAlign = '';
+            }
+        }
+        window.onload = function() { setLang('fr'); };
+
         document.getElementById('logoutBtn').onclick = function() {
             localStorage.removeItem('topolearn_user');
             window.location.href = 'login.html';
@@ -137,6 +232,32 @@
                 // If already on user dashboard, do nothing
                 if(!window.location.pathname.includes('/' + username + '/dashboard.html')) {
                     window.location.href = username + '/dashboard.html';
+                }
+            }
+        })();
+
+        // Redirect to user-specific dashboard, videos, and lessons if logged in
+        (function() {
+            var user = null;
+            try { user = JSON.parse(localStorage.getItem('topolearn_user')); } catch(e){}
+            if(user && user.username) {
+                var username = user.username.toLowerCase();
+                var path = window.location.pathname;
+                // Redirect dashboard
+                if(path.endsWith('/dashboard.html') && !path.includes('/' + username + '/')) {
+                    window.location.href = '/' + username + '/dashboard.html';
+                }
+                // Redirect videos
+                if(path.endsWith('/videos.html') && !path.includes('/' + username + '/')) {
+                    window.location.href = '/' + username + '/videos.html';
+                }
+                // Redirect lessons
+                if(path.endsWith('/leassons.html') && !path.includes('/' + username + '/')) {
+                    window.location.href = '/' + username + '/leassons.html';
+                }
+                // Redirect mysubscription
+                if(path.endsWith('/mysubscription.html') && !path.includes('/' + username + '/')) {
+                    window.location.href = '/' + username + '/mysubscription.html';
                 }
             }
         })();

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mon abonnement - Admin - TopoLearn</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar" style="display: flex; align-items: center; justify-content: space-between;">
+            <div class="logo">
+                <img src="../logo.png" alt="TopoLearn Logo" style="height:48px;vertical-align:middle;"> TopoLearn
+            </div>
+            <div style="display:flex;align-items:center;gap:0.5rem;">
+                <button class="lang-btn" onclick="setLang('fr')">FR</button>
+                <button class="lang-btn" onclick="setLang('ar')">AR</button>
+                <button class="lang-btn" onclick="setLang('en')">EN</button>
+            </div>
+        </nav>
+    </header>
+    <script>
+        const translations = {
+            fr: {
+                title: "Mon abonnement - Admin - TopoLearn",
+                heading: "Mon abonnement - Admin",
+                desc: "Consultez et gérez votre abonnement VIP ici.",
+                btn: "Voir les détails de l'abonnement"
+            },
+            en: {
+                title: "My Subscription - Admin - TopoLearn",
+                heading: "My Subscription - Admin",
+                desc: "View and manage your VIP subscription here.",
+                btn: "View Subscription Details"
+            },
+            ar: {
+                title: "اشتراكي - المشرف - توبوليرن",
+                heading: "اشتراكي - المشرف",
+                desc: "راجع وادِر اشتراكك VIP هنا.",
+                btn: "عرض تفاصيل الاشتراك"
+            }
+        };
+        function setLang(lang) {
+            localStorage.setItem('topolearn_lang', lang);
+            applyLang(lang);
+        }
+        function applyLang(lang) {
+            document.title = translations[lang].title;
+            document.querySelector('h2').textContent = translations[lang].heading;
+            document.querySelector('.container p').textContent = translations[lang].desc;
+            document.querySelector('.container a').textContent = translations[lang].btn;
+            if(lang === 'ar') {
+                document.body.dir = 'rtl';
+                document.body.style.textAlign = 'right';
+            } else {
+                document.body.dir = 'ltr';
+                document.body.style.textAlign = '';
+            }
+        }
+        window.onload = function() {
+            const lang = localStorage.getItem('topolearn_lang') || 'fr';
+            applyLang(lang);
+        };
+    </script>
+    <div class="container">
+        <h2>Mon abonnement - Admin</h2>
+        <p>Consultez et gérez votre abonnement VIP ici.</p>
+        <a href="../mysubscription.html" class="cta-btn">Voir les détails de l'abonnement</a>
+    </div>
+</body>
+</html>

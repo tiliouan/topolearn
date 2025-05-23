@@ -14,12 +14,28 @@
         .dashboard-card:hover { transform: translateY(-6px) scale(1.04); box-shadow: 0 8px 32px rgba(21,101,192,0.13); }
         .dashboard-card h3 { color: #1976d2; margin-bottom: 1rem; }
         @media (max-width: 700px) { .dashboard-container { padding: 1.2rem 0.2rem; } .dashboard-grid { flex-direction: column; gap: 1.2rem; } }
+        .navbar { display: flex; align-items: center; justify-content: space-between; padding: 1rem 2rem; background: #fff; box-shadow: 0 2px 8px rgba(0,0,0,0.1); border-radius: 0 0 18px 18px; }
+        .logo img { height: 48px; vertical-align: middle; }
+        .lang-btn { background: #e3f2fd; border: none; border-radius: 8px; padding: 0.7rem 1.5rem; cursor: pointer; font-weight: 700; transition: background 0.3s; }
+        .lang-btn:hover { background: #d1e8ff; }
     </style>
 </head>
 <body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <img src="../logo.png" alt="TopoLearn Logo"> TopoLearn
+            </div>
+            <div style="display:flex;align-items:center;gap:0.5rem;">
+                <button class="lang-btn" onclick="setLang('fr')">FR</button>
+                <button class="lang-btn" onclick="setLang('ar')">AR</button>
+                <button class="lang-btn" onclick="setLang('en')">EN</button>
+                <button id="logoutBtn" style="background:#d32f2f;color:#fff;padding:0.7rem 1.5rem;border:none;border-radius:8px;font-weight:700;cursor:pointer;margin-left:1rem;" onclick="logout()">Déconnexion</button>
+            </div>
+        </nav>
+    </header>
     <div class="dashboard-container">
         <h2 class="dashboard-title">Bienvenue Ahmed sur votre Dashboard TopoLearn</h2>
-        <button id="logoutBtn" style="float:right;margin-bottom:1.5rem;background:#d32f2f;color:#fff;padding:0.7rem 1.5rem;border:none;border-radius:8px;font-weight:700;cursor:pointer;">Déconnexion</button>
         <div class="dashboard-grid">
             <a class="dashboard-card" href="../videos.html">
                 <h3>Vidéos</h3>
@@ -40,10 +56,67 @@
         </div>
     </div>
     <script>
-        document.getElementById('logoutBtn').onclick = function() {
-            localStorage.removeItem('topolearn_user');
+        if (localStorage.getItem('topolearn_logged_in') !== 'true') {
             window.location.href = '../login.html';
+        }
+        const translations = {
+            fr: {
+                title: "Dashboard Ahmed - TopoLearn",
+                heading: "Bienvenue Ahmed sur votre Dashboard TopoLearn",
+                logout: "Déconnexion",
+                videos: "Vidéos",
+                lessons: "Leçons",
+                support: "Support",
+                sub: "Mon abonnement"
+            },
+            en: {
+                title: "Ahmed's Dashboard - TopoLearn",
+                heading: "Welcome Ahmed to your TopoLearn Dashboard",
+                logout: "Logout",
+                videos: "Videos",
+                lessons: "Lessons",
+                support: "Support",
+                sub: "My Subscription"
+            },
+            ar: {
+                title: "لوحة أحمد - توبوليرن",
+                heading: "مرحبًا أحمد في لوحة تحكم توبوليرن",
+                logout: "تسجيل الخروج",
+                videos: "فيديوهات",
+                lessons: "دروس",
+                support: "الدعم",
+                sub: "اشتراكي"
+            }
         };
+        function setLang(lang) {
+            localStorage.setItem('topolearn_lang', lang);
+            applyLang(lang);
+        }
+        function applyLang(lang) {
+            document.title = translations[lang].title;
+            document.querySelector('.dashboard-title').textContent = translations[lang].heading;
+            document.getElementById('logoutBtn').textContent = translations[lang].logout;
+            const cards = document.querySelectorAll('.dashboard-card h3');
+            cards[0].textContent = translations[lang].videos;
+            cards[1].textContent = translations[lang].lessons;
+            cards[2].textContent = translations[lang].support;
+            cards[3].textContent = translations[lang].sub;
+            if(lang === 'ar') {
+                document.body.dir = 'rtl';
+                document.body.style.textAlign = 'right';
+            } else {
+                document.body.dir = 'ltr';
+                document.body.style.textAlign = '';
+            }
+        }
+        window.onload = function() {
+            const lang = localStorage.getItem('topolearn_lang') || 'fr';
+            applyLang(lang);
+        };
+        function logout() {
+            localStorage.removeItem('topolearn_logged_in');
+            window.location.href = '../login.html';
+        }
     </script>
 </body>
 </html>

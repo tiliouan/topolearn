@@ -6,14 +6,502 @@
     <title>TopoLearn - Plateforme d'apprentissage en topographie</title>
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="logo.png">
 </head>
 <body>
     <header>
         <nav class="navbar" style="display: flex; align-items: center; justify-content: space-between;">
-            <div class="logo">TopoLearn</div>
-            <a href="login.html" class="cta-btn" style="padding:0.5rem 1.2rem; font-size:1rem; width:auto; min-width:unset;">Connexion</a>
+            <div class="logo">
+                <img src="logo.png" alt="TopoLearn Logo" style="height:48px;vertical-align:middle;"> TopoLearn
+            </div>
+            <div style="display:flex;align-items:center;gap:0.5rem;">
+                <button class="lang-btn" onclick="setLang('fr')">FR</button>
+                <button class="lang-btn" onclick="setLang('ar')">AR</button>
+                <button class="lang-btn" onclick="setLang('en')">EN</button>
+                <a href="login.html" class="cta-btn" style="padding:0.5rem 1.2rem; font-size:1rem; width:auto; min-width:unset; margin-left:1rem;">Connexion</a>
+            </div>
         </nav>
     </header>
+    <script>
+        const translations = {
+            fr: {
+                title: "TopoLearn - Plateforme d'apprentissage en topographie",
+                accueil: "TopoLearn - Plateforme Marocaine d'Apprentissage de la Topographie",
+                probleme: "Problème à résoudre",
+                problemeList: [
+                    "Difficile de trouver des cours clairs et structurés sur la topographie au Maroc",
+                    "Tutoriels logiciels souvent en anglais, mal expliqués, ou pas adaptés à nos réalités",
+                    "Pas de support technique pour les étudiants qui bloquent lors de l'installation"
+                ],
+                decouvrirSolution: "Découvrir la solution",
+                solution: "La Solution : TopoLearn",
+                featuresList: [
+                    "Cours vidéos en français et darija",
+                    "Guides d'installation de logiciels (AutoCAD, QGIS, Civil 3D...)",
+                    "Support VIP pour aider à distance les utilisateurs",
+                    "Système de membres (gratuit et VIP)"
+                ],
+                fonctionnalites: "Fonctionnalités principales",
+                fonctionnalitesList: [
+                    "Cours classés par niveau : Débutant, Intermédiaire, Avancé",
+                    "Vidéos + PDFs + exercices pratiques",
+                    "Centre de support technique : chat + assistance à distance (TeamViewer)",
+                    "Interface moderne, adaptée à mobile (responsive)"
+                ],
+                membreVIP: "Membre VIP",
+                cards: [
+                    {
+                        title: "VIP I",
+                        description: "Accès à tous les cours, guides exclusifs, assistance personnalisée, mises à jour prioritaires",
+                        price: "199 MAD/mois"
+                    },
+                    {
+                        title: "VIP II",
+                        description: "Tout VIP I + Formations privées en petits groupes, support technique avancé",
+                        price: "499 MAD/mois"
+                    },
+                    {
+                        title: "VIP 3",
+                        description: "Tout VIP II + Coaching individuel, accès aux événements exclusifs, priorisation totale du support",
+                        price: "999 MAD/mois"
+                    }
+                ],
+                adaptation: "Adaptation au Maroc",
+                adaptationList: [
+                    "Vidéos sous-titrées en français et arabe marocain",
+                    "Exemples de projets réels au Maroc (Casablanca, Rabat, Oujda...)",
+                    "Paiement par CIH, CashPlus, PayPal, Orange Money, WhatsApp"
+                ],
+                modeles: "Modèles & Programmes enseignés",
+                modelesList: [
+                    "Métier et formation géomètre topographe",
+                    "Hygiène et sécurité dans les chantiers",
+                    "Mathématiques appliquées à la topographie",
+                    "Topographie fondamentale",
+                    "Instruments et travaux pratiques fondamentaux",
+                    "Éléments de base de dessin technique et de dessin topographique",
+                    "Notions de base de l'informatique/DAO et les logiciels professionnels",
+                    "Terrassements généraux, projets de terrassement, calcul des cubatures, études et traitement des sols (Géotechnique)",
+                    "Assainissement public et réseaux divers, notions techniques et dimensionnement des réseaux",
+                      "Instruments et travaux pratiques numériques et spatiales",
+                    "Topographie pratique et GPS",
+                    "Photogrammétrie et cartographie",
+                    "Les procédés topographiques pour la densification de canevas planimétriques",
+                    "Droit foncier et techniques cadastrales, mini projet le cadastre projet",
+                    "Projet routier et réseaux divers",
+                    "Moyens de recherche d'emploi",
+                    "Projet de fin de formation"
+                ],
+                softwares: "Logiciels proposés",
+                softwaresList: [
+                    "AutoCAD",
+                    "QGIS",
+                    "CIVIL 3D",
+                    "Robot Structural",
+                    "ArcGIS",
+                    "Revit",
+                    "Covadis",
+                    "Google Earth Pro",
+                    "MS Project",
+                    "Et plus sur demande..."
+                ],
+                softwareSaleInfo: {
+                    title: "Vente de logiciels en :",
+                    languages: "Français, Anglais et Arabe",
+                    installation: "Installation à distance via Anydesk ou TeamViewer",
+                    usbSale: "Vente de clé USB contenant le logiciel et la licence officielle",
+                    note: "Tous nos logiciels sont livrés avec licence et support d'installation à distance ou sur clé USB."
+                },
+                objectif: "Objectif du Projet",
+                objectifText: "Ce projet participe au concours pour une opportunité de stage.<br>Mon objectif : proposer une plateforme utile, locale, moderne et réaliste qui pourra aider les étudiants marocains en topographie à mieux apprendre et évoluer dans leur carrière.",
+                formationsPrivees: "Formations Privées",
+                formationsPriveesText: "Des sessions personnalisées pour approfondir vos connaissances en topographie, animées par des experts du domaine.",
+                temoignages: "Témoignages",
+                temoignagesList: [
+                    {
+                        text: "Grâce à TopoLearn, j'ai réussi mon examen de topographie !",
+                        author: "- Yassine, Casablanca"
+                    },
+                    {
+                        text: "Les formations privées sont très enrichissantes et adaptées à mon niveau.",
+                        author: "- Salma, Rabat"
+                    }
+                ],
+                contact: "Contact & Assistance",
+                contactForm: {
+                    namePlaceholder: "Votre nom",
+                    emailPlaceholder: "Votre email",
+                    msgPlaceholder: "Votre message",
+                    submit: "Envoyer"
+                },
+                footer: {
+                    owners: "Site réalisé par Noura ait brahim & Ikram ait brahim"
+                }
+            },
+            en: {
+                title: "TopoLearn - Moroccan Topography Learning Platform",
+                accueil: "TopoLearn - Moroccan Platform for Learning Topography",
+                probleme: "Problem to solve",
+                problemeList: [
+                    "Hard to find clear and structured courses on topography in Morocco",
+                    "Software tutorials often in English, poorly explained, or not suited to our realities",
+                    "No technical support for students struggling with installation"
+                ],
+                decouvrirSolution: "Discover the solution",
+                solution: "The Solution: TopoLearn",
+                featuresList: [
+                    "Video courses in French and Darija",
+                    "Software installation guides (AutoCAD, QGIS, Civil 3D...)",
+                    "VIP support to assist users remotely",
+                    "Membership system (free and VIP)"
+                ],
+                fonctionnalites: "Main Features",
+                fonctionnalitesList: [
+                    "Courses classified by level: Beginner, Intermediate, Advanced",
+                    "Videos + PDFs + practical exercises",
+                    "Technical support center: chat + remote assistance (TeamViewer)",
+                    "Modern interface, mobile-friendly (responsive)"
+                ],
+                membreVIP: "VIP Member",
+                cards: [
+                    {
+                        title: "VIP I",
+                        description: "Access to all courses, exclusive guides, personalized assistance, priority updates",
+                        price: "199 MAD/month"
+                    },
+                    {
+                        title: "VIP II",
+                        description: "All VIP I + Private training in small groups, advanced technical support",
+                        price: "499 MAD/month"
+                    },
+                    {
+                        title: "VIP 3",
+                        description: "All VIP II + Individual coaching, access to exclusive events, total support prioritization",
+                        price: "999 MAD/month"
+                    }
+                ],
+                adaptation: "Adaptation to Morocco",
+                adaptationList: [
+                    "Videos subtitled in French and Moroccan Arabic",
+                    "Examples of real projects in Morocco (Casablanca, Rabat, Oujda...)",
+                    "Payment via CIH, CashPlus, PayPal, Orange Money, WhatsApp"
+                ],
+                modeles: "Models & Programs Taught",
+                modelesList: [
+                    "Surveyor topographer profession and training",
+                    "Hygiene and safety in construction sites",
+                    "Mathematics applied to topography",
+                    "Fundamental topography",
+                    "Fundamental instruments and practical work",
+                    "Basic elements of technical and topographic drawing",
+                    "Basic notions of computer science/DAO and professional software",
+                    "General earthworks, earthmoving projects, volume calculations, soil studies and treatment (Geotechnics)",
+                    "Public sanitation and various networks, technical notions and network sizing",
+                    "Instruments and digital and spatial practical work",
+                    "Practical topography and GPS",
+                    "Photogrammetry and cartography",
+                    "Topographic processes for the densification of planimetric networks",
+                    "Land law and cadastral techniques, mini project the cadastre project",
+                    "Road project and various networks",
+                    "Job search methods",
+                    "End of training project"
+                ],
+                softwares: "Software Offered",
+                softwaresList: [
+                    "AutoCAD",
+                    "QGIS",
+                    "CIVIL 3D",
+                    "Robot Structural",
+                    "ArcGIS",
+                    "Revit",
+                    "Covadis",
+                    "Google Earth Pro",
+                    "MS Project",
+                    "And more on request..."
+                ],
+                softwareSaleInfo: {
+                    title: "Software sales in:",
+                    languages: "French, English, and Arabic",
+                    installation: "Remote installation via Anydesk or TeamViewer",
+                    usbSale: "Sale of USB key containing the software and official license",
+                    note: "All our software is delivered with a license and remote installation support or on USB key."
+                },
+                objectif: "Project Objective",
+                objectifText: "This project participates in the competition for an internship opportunity.<br>My goal: to offer a useful, local, modern, and realistic platform that can help Moroccan students in topography to learn and evolve better in their career.",
+                formationsPrivees: "Private Training",
+                formationsPriveesText: "Personalized sessions to deepen your knowledge in topography, led by experts in the field.",
+                temoignages: "Testimonials",
+                temoignagesList: [
+                    {
+                        text: "Thanks to TopoLearn, I passed my topography exam!",
+                        author: "- Yassine, Casablanca"
+                    },
+                    {
+                        text: "The private training sessions are very enriching and adapted to my level.",
+                        author: "- Salma, Rabat"
+                    }
+                ],
+                contact: "Contact & Assistance",
+                contactForm: {
+                    namePlaceholder: "Your name",
+                    emailPlaceholder: "Your email",
+                    msgPlaceholder: "Your message",
+                    submit: "Send"
+                },
+                footer: {
+                    owners: "Site realized by Noura ait brahim & Ikram ait brahim"
+                }
+            },
+            ar: {
+                title: "توبوليرن - منصة التعلم الطبوغرافي",
+                accueil: "توبوليرن - المنصة المغربية لتعلم الطبوغرافيا",
+                probleme: "المشكلة المراد حلها",
+                problemeList: [
+                    "صعوبة العثور على دورات واضحة ومنظمة حول الطبوغرافيا في المغرب",
+                    "غالبًا ما تكون البرامج التعليمية للبرامج باللغة الإنجليزية ، وسوء الشرح ، أو غير مناسبة لواقعنا",
+                    "لا يوجد دعم فني للطلاب الذين يواجهون صعوبة أثناء التثبيت"
+                ],
+                decouvrirSolution: "اكتشف الحل",
+                solution: "الحل: توبوليرن",
+                featuresList: [
+                    "دورات فيديو بالفرنسية والداريجة",
+                    "أدلة تثبيت البرامج (AutoCAD ، QGIS ، Civil 3D ...)",
+                    "دعم VIP للمساعدة عن بُعد للمستخدمين",
+                    "نظام العضوية (مجاني و VIP)"
+                ],
+                fonctionnalites: "الميزات الرئيسية",
+                fonctionnalitesList: [
+                    "دورات مصنفة حسب المستوى: مبتدئ ، متوسط ، متقدم",
+                    "فيديوهات + PDFs + تمارين عملية",
+                    "مركز الدعم الفني: دردشة + مساعدة عن بعد (TeamViewer)",
+                    "واجهة حديثة ، متوافقة مع الهواتف المحمولة (متجاوبة)"
+                ],
+                membreVIP: "عضو VIP",
+                cards: [
+                    {
+                        title: "VIP I",
+                        description: "الوصول إلى جميع الدورات ، أدلة حصرية ، مساعدة شخصية ، تحديثات أولوية",
+                        price: "199 درهم / شهر"
+                    },
+                    {
+                        title: "VIP II",
+                        description: "كل ما في VIP I + تدريبات خاصة في مجموعات صغيرة ، دعم فني متقدم",
+                        price: "499 درهم / شهر"
+                    },
+                    {
+                        title: "VIP 3",
+                        description: "كل ما في VIP II + تدريب فردي ، الوصول إلى أحداث حصرية ، أولوية كاملة للدعم",
+                        price: "999 درهم / شهر"
+                    }
+                ],
+                adaptation: "التكيف مع المغرب",
+                adaptationList: [
+                    "فيديوهات مترجمة بالفرنسية والعربية المغربية",
+                    "أمثلة لمشاريع حقيقية في المغرب (الدار البيضاء ، الرباط ، وجدة ...)",
+                    "الدفع عبر CIH و CashPlus و PayPal و Orange Money و WhatsApp"
+                ],
+                modeles: "النماذج والبرامج التعليمية",
+                modelesList: [
+                    "مهنة ومسار تكويني للمهندس الطبوغرافي",
+                    "الصحة والسلامة في مواقع البناء",
+                    "الرياضيات التطبيقية للطبوغرافيا",
+                    "الطبوغرافيا الأساسية",
+                    "الأدوات والأعمال العملية الأساسية",
+                    "عناصر أساسية في الرسم الفني والرسم الطبوغرافي",
+                    "مفاهيم أساسية في الإعلام الآلي / DAO والبرامج المهنية",
+                    "الأشغال الترابية العامة ، مشاريع التحويل ، حساب الحجوم ، دراسات ومعالجة التربة (الجيولوجيا الهندسية)",
+                    "الصرف الصحي العمومي والشبكات المتنوعة ، المفاهيم الفنية وحساب أبعاد الشبكات",
+                    "الأدوات والأعمال العملية الرقمية والفضائية",
+                    "الطبوغرافيا العملية ونظام تحديد المواقع العالمي (GPS)",
+                    "التصوير الفوتوغرافي والخرائطية",
+                    "العمليات الطبوغرافية لتكثيف الشبكات المساحية",
+                    "قانون الملكية والتقنيات الكادسترالية ، مشروع مصغر مشروع السجل العقاري",
+                    "مشروع طرق والشبكات المتنوعة",
+                    "وسائل البحث عن العمل",
+                    "مشروع نهاية التكوين"
+                ],
+                softwares: "البرامج المعروضة",
+                softwaresList: [
+                    "AutoCAD",
+                    "QGIS",
+                    "CIVIL 3D",
+                    "Robot Structural",
+                    "ArcGIS",
+                    "Revit",
+                    "Covadis",
+                    "Google Earth Pro",
+                    "MS Project",
+                    "والمزيد عند الطلب..."
+                ],
+                softwareSaleInfo: {
+                    title: "بيع البرامج بـ:",
+                    languages: "بالفرنسية والإنجليزية والعربية",
+                    installation: "التثبيت عن بُعد عبر Anydesk أو TeamViewer",
+                    usbSale: "بيع مفتاح USB يحتوي على البرنامج والترخيص الرسمي",
+                    note: "تأتي جميع برامجنا مع ترخيص ودعم التثبيت عن بُعد أو على مفتاح USB."
+                },
+                objectif: "هدف المشروع",
+                objectifText: "يشارك هذا المشروع في المسابقة للحصول على فرصة تدريبية.<br>هدفي هو تقديم منصة مفيدة ومحلية وحديثة وواقعية يمكن أن تساعد الطلاب المغاربة في الطبوغرافيا على التعلم والتطور بشكل أفضل في مسيرتهم المهنية.",
+                formationsPrivees: "تدريبات خاصة",
+                formationsPriveesText: "جلسات مخصصة لتعميق معرفتك بالطبوغرافيا ، يقودها خبراء في المجال.",
+                temoignages: "شهادات",
+                temoignagesList: [
+                    {
+                        text: "بفضل TopoLearn ، نجحت في امتحان الطبوغرافيا الخاص بي!",
+                        author: "- ياسين ، الدار البيضاء"
+                    },
+                    {
+                        text: "الدورات التدريبية الخاصة enriquecen جدًا ومناسبة لمستواي.",
+                        author: "- سلمى ، الرباط"
+                    }
+                ],
+                contact: "اتصال ودعم",
+                contactForm: {
+                    namePlaceholder: "اسمك",
+                    emailPlaceholder: "بريدك الإلكتروني",
+                    msgPlaceholder: "رسالتك",
+                    submit: "إرسال"
+                },
+                footer: {
+                    owners: "الموقع من إنجاز نورة أيت ابراهيم وإكرام أيت ابراهيم"
+                }
+            }
+        };
+        function setLang(lang) {
+            localStorage.setItem('topolearn_lang', lang);
+            applyLang(lang);
+        }
+        function applyLang(lang) {
+            document.title = translations[lang].title;
+            document.querySelector('#accueil h1').textContent = translations[lang].accueil;
+            document.querySelector('.problem h3').textContent = translations[lang].probleme;
+            const problemList = document.querySelector('.problem ul');
+            problemList.innerHTML = '';
+            translations[lang].problemeList.forEach(item => {
+                const li = document.createElement('li');
+                li.textContent = item;
+                problemList.appendChild(li);
+            });
+            document.querySelector('.cta-btn').textContent = translations[lang].decouvrirSolution;
+            // Update Connexion/Login button in header
+            const loginBtn = document.querySelector('a[href="login.html"]');
+            if (loginBtn) {
+                if (lang === 'fr') loginBtn.textContent = 'Connexion';
+                else if (lang === 'en') loginBtn.textContent = 'Login';
+                else if (lang === 'ar') loginBtn.textContent = 'تسجيل الدخول';
+            }
+            document.querySelector('#solution h2').textContent = translations[lang].solution;
+            const featuresList = document.querySelector('#solution .features-list');
+            featuresList.innerHTML = '';
+            translations[lang].featuresList.forEach(item => {
+                const li = document.createElement('li');
+                li.textContent = item;
+                featuresList.appendChild(li);
+            });
+            document.querySelector('#fonctionnalites h2').textContent = translations[lang].fonctionnalites;
+            const fonctionnalitesList = document.querySelector('#fonctionnalites .features-list');
+            fonctionnalitesList.innerHTML = '';
+            translations[lang].fonctionnalitesList.forEach(item => {
+                const li = document.createElement('li');
+                li.textContent = item;
+                fonctionnalitesList.appendChild(li);
+            });
+            document.querySelector('#formules h2').textContent = translations[lang].membreVIP;
+            const cards = document.querySelector('.cards');
+            cards.innerHTML = '';
+            translations[lang].cards.forEach(card => {
+                const div = document.createElement('div');
+                div.className = 'card';
+                div.innerHTML = `
+                    <h3>${card.title}</h3>
+                    <p>${card.description}</p>
+                    <span class="price">${card.price}</span>
+                `;
+                cards.appendChild(div);
+            });
+            document.querySelector('#adaptation h2').textContent = translations[lang].adaptation;
+            const adaptationList = document.querySelector('#adaptation .features-list');
+            adaptationList.innerHTML = '';
+            translations[lang].adaptationList.forEach(item => {
+                const li = document.createElement('li');
+                li.textContent = item;
+                adaptationList.appendChild(li);
+            });
+            document.querySelector('#modeles h2').textContent = translations[lang].modeles;
+            const modelesList = document.querySelector('#modeles .features-list');
+            modelesList.innerHTML = '';
+            translations[lang].modelesList.forEach(item => {
+                const li = document.createElement('li');
+                li.textContent = item;
+                modelesList.appendChild(li);
+            });
+            document.querySelector('#softwares h2').textContent = translations[lang].softwares;
+            const softwaresList = document.querySelector('#softwares .features-list');
+            softwaresList.innerHTML = '';
+            translations[lang].softwaresList.forEach(item => {
+                const li = document.createElement('li');
+                li.textContent = item;
+                softwaresList.appendChild(li);
+            });
+            // Software sale info translation (robust selectors)
+            const softwareSaleInfo = document.querySelector('.software-sale-info');
+            if (softwareSaleInfo) {
+                const saleTitle = softwareSaleInfo.querySelector('p b');
+                if (saleTitle) saleTitle.textContent = translations[lang].softwareSaleInfo.title;
+                const saleList = softwareSaleInfo.querySelector('ul');
+                if (saleList) {
+                    saleList.innerHTML = '';
+                    saleList.innerHTML += `<li>${translations[lang].softwareSaleInfo.languages}</li>`;
+                    saleList.innerHTML += `<li>${translations[lang].softwareSaleInfo.installation}</li>`;
+                    saleList.innerHTML += `<li>${translations[lang].softwareSaleInfo.usbSale}</li>`;
+                }
+                const saleNote = softwareSaleInfo.querySelectorAll('p')[1];
+                if (saleNote) saleNote.textContent = translations[lang].softwareSaleInfo.note;
+            }
+            document.querySelector('#objectif h2').textContent = translations[lang].objectif;
+            document.querySelector('#objectif p').innerHTML = translations[lang].objectifText;
+            document.querySelector('#formations h2').textContent = translations[lang].formationsPrivees;
+            document.querySelector('#formations p').innerHTML = translations[lang].formationsPriveesText;
+            document.querySelector('#temoignages h2').textContent = translations[lang].temoignages;
+            const temoignagesContainer = document.querySelector('.temoignages .testimonials');
+            temoignagesContainer.innerHTML = '';
+            translations[lang].temoignagesList.forEach(item => {
+                const blockquote = document.createElement('blockquote');
+                blockquote.innerHTML = `${item.text}<br><span>${item.author}</span>`;
+                temoignagesContainer.appendChild(blockquote);
+            });
+            document.querySelector('#contact h2').textContent = translations[lang].contact;
+            const contactForm = document.getElementById('contactForm');
+            if (contactForm) {
+                contactForm.querySelector('input#contactName').placeholder = translations[lang].contactForm.namePlaceholder;
+                contactForm.querySelector('input#contactEmail').placeholder = translations[lang].contactForm.emailPlaceholder;
+                contactForm.querySelector('textarea#contactMsg').placeholder = translations[lang].contactForm.msgPlaceholder;
+                contactForm.querySelector('button[type="submit"]').textContent = translations[lang].contactForm.submit;
+            }
+            // Footer translation
+            const footerOwners = document.querySelector('footer p.footer-owners');
+            if (footerOwners) footerOwners.innerHTML = translations[lang].footer.owners;
+            // Update copyright line
+            const copyright = document.querySelector('footer p:not(.footer-owners)');
+            if (copyright) {
+                if (lang === 'fr') copyright.innerHTML = '&copy; 2025 TopoLearn. Tous droits réservés.';
+                else if (lang === 'en') copyright.innerHTML = '&copy; 2025 TopoLearn. All rights reserved.';
+                else if (lang === 'ar') copyright.innerHTML = '&copy; 2025 توبوليرن. جميع الحقوق محفوظة.';
+            }
+            // Directionality
+            if(lang === 'ar') {
+                document.body.dir = 'rtl';
+                document.body.style.textAlign = 'right';
+            } else {
+                document.body.dir = 'ltr';
+                document.body.style.textAlign = '';
+            }
+        }
+        window.onload = function() {
+            const lang = localStorage.getItem('topolearn_lang') || 'fr';
+            applyLang(lang);
+        };
+    </script>
     <main>
         <!-- Slide 1: Introduction & Problème à résoudre -->
         <section id="accueil" class="section accueil">
@@ -88,6 +576,58 @@
                 </ul>
             </div>
         </section>
+        <!-- Slide 7: Modèles & Programmes enseignés -->
+        <section id="modeles" class="section modeles">
+            <div class="container">
+                <h2>Modèles & Programmes enseignés</h2>
+                <ul class="features-list">
+                    <li>Métier et formation géomètre topographe</li>
+                    <li>Hygiène et sécurité dans les chantiers</li>
+                    <li>Mathématiques appliquées à la topographie</li>
+                    <li>Topographie fondamentale</li>
+                    <li>Instruments et travaux pratiques fondamentaux</li>
+                    <li>Éléments de base de dessin technique et de dessin topographique</li>
+                    <li>Notions de base de l'informatique/DAO et les logiciels professionnels</li>
+                    <li>Terrassements généraux, projets de terrassement, calcul des cubatures, études et traitement des sols (Géotechnique)</li>
+                    <li>Assainissement public et réseaux divers, notions techniques et dimensionnement des réseaux</li>
+                    <li>Instruments et travaux pratiques numériques et spatiales</li>
+                    <li>Topographie pratique et GPS</li>
+                    <li>Photogrammétrie et cartographie</li>
+                    <li>Les procédés topographiques pour la densification de canevas planimétriques</li>
+                    <li>Droit foncier et techniques cadastrales, mini projet le cadastre projet</li>
+                    <li>Projet routier et réseaux divers</li>
+                    <li>Moyens de recherche d'emploi</li>
+                    <li>Projet de fin de formation</li>
+                </ul>
+            </div>
+        </section>
+        <!-- Slide 7b: Logiciels proposés à la vente -->
+        <section id="softwares" class="section softwares">
+            <div class="container">
+                <h2>Logiciels proposés</h2>
+                <ul class="features-list">
+                    <li>AutoCAD</li>
+                    <li>QGIS</li>
+                    <li>CIVIL 3D</li>
+                    <li>Robot Structural</li>
+                    <li>ArcGIS</li>
+                    <li>Revit</li>
+                    <li>Covadis</li>
+                    <li>Google Earth Pro</li>
+                    <li>MS Project</li>
+                    <li>Et plus sur demande...</li>
+                </ul>
+                <div class="software-sale-info" style="margin-top:1.5rem;">
+                    <p><b>Vente de logiciels en :</b></p>
+                    <ul>
+                        <li>Français, Anglais et Arabe</li>
+                        <li>Installation à distance via <b>Anydesk</b> ou <b>TeamViewer</b></li>
+                        <li>Vente de clé USB contenant le logiciel et la licence officielle</li>
+                    </ul>
+                    <p style="margin-top:0.7rem;">Tous nos logiciels sont livrés avec licence et support d'installation à distance ou sur clé USB.</p>
+                </div>
+            </div>
+        </section>
         <!-- Slide 8: Objectif du Projet -->
         <section id="objectif" class="section objectif">
             <div class="container">
@@ -110,7 +650,7 @@
                         "Grâce à TopoLearn, j'ai réussi mon examen de topographie !"<br><span>- Yassine, Casablanca</span>
                     </blockquote>
                     <blockquote>
-                        "Les formations privées sont très enrichissantes et adaptées à mon niveau."<br><span>- Salma, Rabat</span>
+                        "Les formations privées sont très enriquecedoras et adaptées à mon niveau."<br><span>- Salma, Rabat</span>
                     </blockquote>
                 </div>
             </div>

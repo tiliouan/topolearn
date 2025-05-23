@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vidéos d'Ahmed - TopoLearn</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar" style="display: flex; align-items: center; justify-content: space-between;">
+            <div class="logo">
+                <img src="../logo.png" alt="TopoLearn Logo" style="height:48px;vertical-align:middle;"> TopoLearn
+            </div>
+            <div style="display:flex;align-items:center;gap:0.5rem;">
+                <button class="lang-btn" onclick="setLang('fr')">FR</button>
+                <button class="lang-btn" onclick="setLang('ar')">AR</button>
+                <button class="lang-btn" onclick="setLang('en')">EN</button>
+            </div>
+        </nav>
+    </header>
+    <script>
+        const translations = {
+            fr: {
+                title: "Vidéos d'Ahmed - TopoLearn",
+                heading: "Vidéos de formation - Ahmed",
+                desc: "Accédez à toutes vos vidéos de formation sur Google Drive :",
+                btn: "Voir les vidéos"
+            },
+            en: {
+                title: "Ahmed's Videos - TopoLearn",
+                heading: "Training Videos - Ahmed",
+                desc: "Access all your training videos on Google Drive:",
+                btn: "View Videos"
+            },
+            ar: {
+                title: "فيديوهات أحمد - توبوليرن",
+                heading: "فيديوهات التدريب - أحمد",
+                desc: "تصفح جميع فيديوهاتك التدريبية على Google Drive:",
+                btn: "عرض الفيديوهات"
+            }
+        };
+        function setLang(lang) {
+            localStorage.setItem('topolearn_lang', lang);
+            applyLang(lang);
+        }
+        function applyLang(lang) {
+            document.title = translations[lang].title;
+            document.querySelector('h2').textContent = translations[lang].heading;
+            document.querySelector('.container p').textContent = translations[lang].desc;
+            document.querySelector('.container a').textContent = translations[lang].btn;
+            if(lang === 'ar') {
+                document.body.dir = 'rtl';
+                document.body.style.textAlign = 'right';
+            } else {
+                document.body.dir = 'ltr';
+                document.body.style.textAlign = '';
+            }
+        }
+        window.onload = function() {
+            const lang = localStorage.getItem('topolearn_lang') || 'fr';
+            applyLang(lang);
+        };
+    </script>
+    <div class="container">
+        <h2>Vidéos de formation - Ahmed</h2>
+        <p>Accédez à toutes vos vidéos de formation sur Google Drive :</p>
+        <a href="https://drive.google.com/drive/folders/USER_VIDEOS_FOLDER_ID" target="_blank" class="cta-btn">Voir les vidéos</a>
+    </div>
+</body>
+</html>

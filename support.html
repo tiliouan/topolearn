@@ -43,9 +43,45 @@
         .support-form button:hover {
             background: #0d47a1;
         }
+        .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem;
+            background: #1976d2;
+            color: #fff;
+        }
+        .logo img {
+            height: 48px;
+            vertical-align: middle;
+        }
+        .lang-btn {
+            background: none;
+            border: 1px solid #fff;
+            color: #fff;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .lang-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
     </style>
 </head>
 <body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <img src="logo.png" alt="TopoLearn Logo"> TopoLearn
+            </div>
+            <div style="display:flex;align-items:center;gap:0.5rem;">
+                <button class="lang-btn" onclick="setLang('fr')">FR</button>
+                <button class="lang-btn" onclick="setLang('ar')">AR</button>
+                <button class="lang-btn" onclick="setLang('en')">EN</button>
+            </div>
+        </nav>
+    </header>
     <form class="support-form" id="supportForm">
         <h2>Support & Assistance</h2>
         <input type="text" id="supportName" placeholder="Votre nom" required>
@@ -54,6 +90,55 @@
         <button type="submit">Envoyer</button>
     </form>
     <script>
+        const translations = {
+            fr: {
+                title: "Support - TopoLearn",
+                heading: "Support & Assistance",
+                name: "Votre nom",
+                email: "Votre email",
+                msg: "Décrivez votre problème ou question",
+                btn: "Envoyer"
+            },
+            en: {
+                title: "Support - TopoLearn",
+                heading: "Support & Assistance",
+                name: "Your name",
+                email: "Your email",
+                msg: "Describe your problem or question",
+                btn: "Send"
+            },
+            ar: {
+                title: "الدعم - توبوليرن",
+                heading: "الدعم والمساعدة",
+                name: "اسمك",
+                email: "بريدك الإلكتروني",
+                msg: "صف مشكلتك أو سؤالك",
+                btn: "إرسال"
+            }
+        };
+        function setLang(lang) {
+            localStorage.setItem('topolearn_lang', lang);
+            applyLang(lang);
+        }
+        function applyLang(lang) {
+            document.title = translations[lang].title;
+            document.querySelector('h2').textContent = translations[lang].heading;
+            document.getElementById('supportName').placeholder = translations[lang].name;
+            document.getElementById('supportEmail').placeholder = translations[lang].email;
+            document.getElementById('supportMsg').placeholder = translations[lang].msg;
+            document.querySelector('.support-form button').textContent = translations[lang].btn;
+            if(lang === 'ar') {
+                document.body.dir = 'rtl';
+                document.body.style.textAlign = 'right';
+            } else {
+                document.body.dir = 'ltr';
+                document.body.style.textAlign = '';
+            }
+        }
+        window.onload = function() {
+            const lang = localStorage.getItem('topolearn_lang') || 'fr';
+            applyLang(lang);
+        };
         document.getElementById('supportForm').addEventListener('submit', function(e) {
             e.preventDefault();
             var name = document.getElementById('supportName').value.trim();

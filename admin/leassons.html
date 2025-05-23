@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leçons Admin - TopoLearn</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar" style="display: flex; align-items: center; justify-content: space-between;">
+            <div class="logo">
+                <img src="../logo.png" alt="TopoLearn Logo" style="height:48px;vertical-align:middle;"> TopoLearn
+            </div>
+            <div style="display:flex;align-items:center;gap:0.5rem;">
+                <button class="lang-btn" onclick="setLang('fr')">FR</button>
+                <button class="lang-btn" onclick="setLang('ar')">AR</button>
+                <button class="lang-btn" onclick="setLang('en')">EN</button>
+            </div>
+        </nav>
+    </header>
+    <script>
+        const translations = {
+            fr: {
+                title: "Leçons Admin - TopoLearn",
+                heading: "Leçons et supports PDF - Admin",
+                desc: "Consultez toutes les leçons et supports PDF (admin) sur Google Drive :",
+                btn: "Voir les leçons"
+            },
+            en: {
+                title: "Admin Lessons - TopoLearn",
+                heading: "Lessons and PDF Resources - Admin",
+                desc: "View all lessons and PDF resources (admin) on Google Drive:",
+                btn: "View Lessons"
+            },
+            ar: {
+                title: "دروس المشرف - توبوليرن",
+                heading: "الدروس والملفات PDF - المشرف",
+                desc: "تصفح جميع الدروس وملفات PDF (المشرف) على Google Drive:",
+                btn: "عرض الدروس"
+            }
+        };
+        function setLang(lang) {
+            localStorage.setItem('topolearn_lang', lang);
+            applyLang(lang);
+        }
+        function applyLang(lang) {
+            document.title = translations[lang].title;
+            document.querySelector('h2').textContent = translations[lang].heading;
+            document.querySelector('.container p').textContent = translations[lang].desc;
+            document.querySelector('.container a').textContent = translations[lang].btn;
+            if(lang === 'ar') {
+                document.body.dir = 'rtl';
+                document.body.style.textAlign = 'right';
+            } else {
+                document.body.dir = 'ltr';
+                document.body.style.textAlign = '';
+            }
+        }
+        window.onload = function() {
+            const lang = localStorage.getItem('topolearn_lang') || 'fr';
+            applyLang(lang);
+        };
+    </script>
+    <div class="container">
+        <h2>Leçons et supports PDF - Admin</h2>
+        <p>Consultez toutes les leçons et supports PDF (admin) sur Google Drive :</p>
+        <a href="https://drive.google.com/drive/folders/USER_LESSONS_FOLDER_ID" target="_blank" class="cta-btn">Voir les leçons</a>
+    </div>
+</body>
+</html>

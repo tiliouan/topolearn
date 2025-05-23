@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mon abonnement - Noura - TopoLearn</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar" style="display: flex; align-items: center; justify-content: space-between;">
+            <div class="logo">
+                <img src="../logo.png" alt="TopoLearn Logo" style="height:48px;vertical-align:middle;"> TopoLearn
+            </div>
+            <div style="display:flex;align-items:center;gap:0.5rem;">
+                <button class="lang-btn" onclick="setLang('fr')">FR</button>
+                <button class="lang-btn" onclick="setLang('ar')">AR</button>
+                <button class="lang-btn" onclick="setLang('en')">EN</button>
+            </div>
+        </nav>
+    </header>
+    <script>
+        const translations = {
+            fr: {
+                title: "Mon abonnement - Noura - TopoLearn",
+                heading: "Mon abonnement - Noura",
+                desc: "Vous êtes actuellement abonnée à la formule <b>VIP 3 – Formule Avancée</b>.",
+                features: [
+                    "🎯 Préparation à un niveau avancé ou au marché de l’emploi",
+                    "🎥 Vidéos explicatives détaillées et pédagogiques",
+                    "🌐 Assistance à distance complète (Zoom / TeamViewer)",
+                    "📝 Suivi personnalisé du projet de fin de formation",
+                    "📘 Cours multilingues : français, darija marocaine, etc.",
+                    "💡 Assistance technique mensuelle (TeamViewer / Zoom)",
+                    "📺 Accès illimité aux vidéos et aux contenus pédagogiques",
+                    "📄 Exercices corrigés pour évaluer la progression",
+                    "🛠 Maîtrise d’outils avancés : AutoCAD, QGIS, CIVIL 3D, Robot Structural, etc.",
+                    "Accompagnement à la rédaction du rapport de fin de formation",
+                    "Préparation de l’examen de Fin de Formation",
+                    "Clé USB : Support de stockage remis à l’apprenant sur demande, contenant les logiciels pédagogiques (AutoCAD, QGIS, CIVIL 3D…) et les documents à installer localement ou via assistance à distance"
+                ]
+            },
+            en: {
+                title: "My Subscription - Noura - TopoLearn",
+                heading: "My Subscription - Noura",
+                desc: "You are currently subscribed to the <b>VIP 3 – Advanced Plan</b>.",
+                features: [
+                    "🎯 Preparation for an advanced level or the job market",
+                    "🎥 Detailed and educational explanatory videos",
+                    "🌐 Complete remote assistance (Zoom / TeamViewer)",
+                    "📝 Personalized follow-up of the final project",
+                    "📘 Multilingual courses: French, Moroccan Darija, etc.",
+                    "💡 Monthly technical assistance (TeamViewer / Zoom)",
+                    "📺 Unlimited access to videos and educational content",
+                    "📄 Corrected exercises to evaluate progress",
+                    "🛠 Mastery of advanced tools: AutoCAD, QGIS, CIVIL 3D, Robot Structural, etc.",
+                    "Support in writing the final report",
+                    "Preparation for the Final Exam",
+                    "USB Key: Storage support provided to the learner on request, containing educational software (AutoCAD, QGIS, CIVIL 3D…) and documents to be installed locally or via remote assistance"
+                ]
+            },
+            ar: {
+                title: "اشتراكي - نورا - توبوليرن",
+                heading: "اشتراكي - نورا",
+                desc: "أنتِ مشتركة حاليًا في <b>VIP 3 – الخطة المتقدمة</b>.",
+                features: [
+                    "🎯 التحضير لمستوى متقدم أو لسوق العمل",
+                    "🎥 مقاطع فيديو توضيحية مفصلة وتعليمية",
+                    "🌐 مساعدة كاملة عن بُعد (زووم / تيم فيور)",
+                    "📝 متابعة شخصية لمشروع نهاية التدريب",
+                    "📘 دورات متعددة اللغات: الفرنسية، الدارجة المغربية، إلخ.",
+                    "💡 مساعدة تقنية شهرية (تيم فيور / زووم)",
+                    "📺 وصول غير محدود إلى مقاطع الفيديو والمحتويات التعليمية",
+                    "📄 تمارين مصححة لتقييم التقدم",
+                    "🛠 إتقان أدوات متقدمة: أوتوكاد، كيو جي آي إس، سيفيل 3D، روبوت ستراكتشرال، إلخ.",
+                    "مساعدة في كتابة التقرير النهائي",
+                    "التحضير لامتحان نهاية التدريب",
+                    "ذاكرة فلاش: وسيلة تخزين تُقدم للمتعلم عند الطلب، تحتوي على البرامج التعليمية (أوتوكاد، كيو جي آي إس، سيفيل 3D…) والمستندات التي يجب تثبيتها محليًا أو عبر المساعدة عن بُعد"
+                ]
+            }
+        };
+        function setLang(lang) {
+            localStorage.setItem('topolearn_lang', lang);
+            applyLang(lang);
+        }
+        function applyLang(lang) {
+            document.title = translations[lang].title;
+            document.querySelector('h2').textContent = translations[lang].heading;
+            document.querySelector('.container p').innerHTML = translations[lang].desc;
+            const featuresList = document.querySelector('.features-list');
+            featuresList.innerHTML = '';
+            translations[lang].features.forEach(feature => {
+                const li = document.createElement('li');
+                li.innerHTML = feature;
+                featuresList.appendChild(li);
+            });
+            if(lang === 'ar') {
+                document.body.dir = 'rtl';
+                document.body.style.textAlign = 'right';
+            } else {
+                document.body.dir = 'ltr';
+                document.body.style.textAlign = '';
+            }
+        }
+        window.onload = function() {
+            const lang = localStorage.getItem('topolearn_lang') || 'fr';
+            applyLang(lang);
+        };
+    </script>
+    <div class="container">
+        <h2>Mon abonnement - Noura</h2>
+        <p>Vous êtes actuellement abonnée à la formule <b>VIP 3 – Formule Avancée</b>.</p>
+        <ul class="features-list">
+            <li>🎯 Préparation à un niveau avancé ou au marché de l’emploi</li>
+            <li>🎥 Vidéos explicatives détaillées et pédagogiques</li>
+            <li>🌐 Assistance à distance complète (Zoom / TeamViewer)</li>
+            <li>📝 Suivi personnalisé du projet de fin de formation</li>
+            <li>📘 Cours multilingues : français, darija marocaine, etc.</li>
+            <li>💡 Assistance technique mensuelle (TeamViewer / Zoom)</li>
+            <li>📺 Accès illimité aux vidéos et aux contenus pédagogiques</li>
+            <li>📄 Exercices corrigés pour évaluer la progression</li>
+            <li>🛠 Maîtrise d’outils avancés : AutoCAD, QGIS, CIVIL 3D, Robot Structural, etc.</li>
+            <li>Accompagnement à la rédaction du rapport de fin de formation</li>
+            <li>Préparation de l’examen de Fin de Formation</li>
+            <li>Clé USB : Support de stockage remis à l’apprenant sur demande, contenant les logiciels pédagogiques (AutoCAD, QGIS, CIVIL 3D…) et les documents à installer localement ou via assistance à distance</li>
+        </ul>
+        <p style="margin-top:1.2rem;">Pour toute question ou pour changer de formule, contactez le support via WhatsApp.</p>
+    </div>
+</body>
+</html>
