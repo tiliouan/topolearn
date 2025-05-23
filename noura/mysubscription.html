@@ -23,9 +23,10 @@
         const translations = {
             fr: {
                 title: "Mon abonnement - Noura - TopoLearn",
-                heading: "Mon abonnement - Noura",
-                desc: "Vous êtes actuellement abonnée à la formule <b>VIP 3 – Formule Avancée</b>.",
-                features: [
+                heading: "Mon abonnement VIP 3 - Noura",
+                desc: "Vous bénéficiez de l'abonnement VIP 3 : Coaching individuel, accès aux événements exclusifs, priorisation totale du support.",
+                btn: "Voir les avantages VIP 3",
+                benefits: [
                     "🎯 Préparation à un niveau avancé ou au marché de l’emploi",
                     "🎥 Vidéos explicatives détaillées et pédagogiques",
                     "🌐 Assistance à distance complète (Zoom / TeamViewer)",
@@ -42,40 +43,42 @@
             },
             en: {
                 title: "My Subscription - Noura - TopoLearn",
-                heading: "My Subscription - Noura",
-                desc: "You are currently subscribed to the <b>VIP 3 – Advanced Plan</b>.",
-                features: [
-                    "🎯 Preparation for an advanced level or the job market",
+                heading: "My VIP 3 Subscription - Noura",
+                desc: "You have VIP 3: Individual coaching, access to exclusive events, total support prioritization.",
+                btn: "See VIP 3 Benefits",
+                benefits: [
+                    "🎯 Preparation for advanced level or job market",
                     "🎥 Detailed and educational explanatory videos",
-                    "🌐 Complete remote assistance (Zoom / TeamViewer)",
+                    "🌐 Full remote assistance (Zoom / TeamViewer)",
                     "📝 Personalized follow-up of the final project",
                     "📘 Multilingual courses: French, Moroccan Darija, etc.",
                     "💡 Monthly technical assistance (TeamViewer / Zoom)",
                     "📺 Unlimited access to videos and educational content",
-                    "📄 Corrected exercises to evaluate progress",
+                    "📄 Corrected exercises to assess progress",
                     "🛠 Mastery of advanced tools: AutoCAD, QGIS, CIVIL 3D, Robot Structural, etc.",
-                    "Support in writing the final report",
-                    "Preparation for the Final Exam",
-                    "USB Key: Storage support provided to the learner on request, containing educational software (AutoCAD, QGIS, CIVIL 3D…) and documents to be installed locally or via remote assistance"
+                    "Support for writing the final project report",
+                    "Preparation for the End of Training exam",
+                    "USB key: Storage device provided to the learner on request, containing educational software (AutoCAD, QGIS, CIVIL 3D…) and documents to install locally or via remote assistance"
                 ]
             },
             ar: {
-                title: "اشتراكي - نورا - توبوليرن",
-                heading: "اشتراكي - نورا",
-                desc: "أنتِ مشتركة حاليًا في <b>VIP 3 – الخطة المتقدمة</b>.",
-                features: [
+                title: "اشتراكي VIP 3 - نورة - توبوليرن",
+                heading: "اشتراكي VIP 3 - نورة",
+                desc: "لديك اشتراك VIP 3: تدريب فردي، الوصول إلى أحداث حصرية، أولوية كاملة للدعم.",
+                btn: "عرض مزايا VIP 3",
+                benefits: [
                     "🎯 التحضير لمستوى متقدم أو لسوق العمل",
-                    "🎥 مقاطع فيديو توضيحية مفصلة وتعليمية",
-                    "🌐 مساعدة كاملة عن بُعد (زووم / تيم فيور)",
-                    "📝 متابعة شخصية لمشروع نهاية التدريب",
-                    "📘 دورات متعددة اللغات: الفرنسية، الدارجة المغربية، إلخ.",
-                    "💡 مساعدة تقنية شهرية (تيم فيور / زووم)",
-                    "📺 وصول غير محدود إلى مقاطع الفيديو والمحتويات التعليمية",
+                    "🎥 فيديوهات توضيحية مفصلة وتربوية",
+                    "🌐 دعم عن بعد كامل (Zoom / TeamViewer)",
+                    "📝 متابعة شخصية لمشروع نهاية التكوين",
+                    "📘 دروس متعددة اللغات: الفرنسية، الدارجة المغربية، إلخ.",
+                    "💡 دعم تقني شهري (TeamViewer / Zoom)",
+                    "📺 وصول غير محدود للفيديوهات والمحتوى التعليمي",
                     "📄 تمارين مصححة لتقييم التقدم",
-                    "🛠 إتقان أدوات متقدمة: أوتوكاد، كيو جي آي إس، سيفيل 3D، روبوت ستراكتشرال، إلخ.",
-                    "مساعدة في كتابة التقرير النهائي",
-                    "التحضير لامتحان نهاية التدريب",
-                    "ذاكرة فلاش: وسيلة تخزين تُقدم للمتعلم عند الطلب، تحتوي على البرامج التعليمية (أوتوكاد، كيو جي آي إس، سيفيل 3D…) والمستندات التي يجب تثبيتها محليًا أو عبر المساعدة عن بُعد"
+                    "🛠 إتقان الأدوات المتقدمة: AutoCAD، QGIS، CIVIL 3D، Robot Structural، إلخ.",
+                    "مرافقة في كتابة تقرير نهاية التكوين",
+                    "التحضير لامتحان نهاية التكوين",
+                    "مفتاح USB: وسيلة تخزين تُسلم للمتعلم عند الطلب، تحتوي على البرامج التعليمية (AutoCAD، QGIS، CIVIL 3D…) والوثائق للتثبيت محليًا أو عبر الدعم عن بعد"
                 ]
             }
         };
@@ -87,12 +90,19 @@
             document.title = translations[lang].title;
             document.querySelector('h2').textContent = translations[lang].heading;
             document.querySelector('.container p').innerHTML = translations[lang].desc;
-            const featuresList = document.querySelector('.features-list');
-            featuresList.innerHTML = '';
-            translations[lang].features.forEach(feature => {
+            document.querySelector('.container a').textContent = translations[lang].btn;
+            // Show only VIP 3 benefits
+            let ul = document.querySelector('.vip-benefits');
+            if (!ul) {
+                ul = document.createElement('ul');
+                ul.className = 'vip-benefits';
+                document.querySelector('.container').appendChild(ul);
+            }
+            ul.innerHTML = '';
+            translations[lang].benefits.forEach(benefit => {
                 const li = document.createElement('li');
-                li.innerHTML = feature;
-                featuresList.appendChild(li);
+                li.innerHTML = benefit;
+                ul.appendChild(li);
             });
             if(lang === 'ar') {
                 document.body.dir = 'rtl';
@@ -108,23 +118,10 @@
         };
     </script>
     <div class="container">
-        <h2>Mon abonnement - Noura</h2>
-        <p>Vous êtes actuellement abonnée à la formule <b>VIP 3 – Formule Avancée</b>.</p>
-        <ul class="features-list">
-            <li>🎯 Préparation à un niveau avancé ou au marché de l’emploi</li>
-            <li>🎥 Vidéos explicatives détaillées et pédagogiques</li>
-            <li>🌐 Assistance à distance complète (Zoom / TeamViewer)</li>
-            <li>📝 Suivi personnalisé du projet de fin de formation</li>
-            <li>📘 Cours multilingues : français, darija marocaine, etc.</li>
-            <li>💡 Assistance technique mensuelle (TeamViewer / Zoom)</li>
-            <li>📺 Accès illimité aux vidéos et aux contenus pédagogiques</li>
-            <li>📄 Exercices corrigés pour évaluer la progression</li>
-            <li>🛠 Maîtrise d’outils avancés : AutoCAD, QGIS, CIVIL 3D, Robot Structural, etc.</li>
-            <li>Accompagnement à la rédaction du rapport de fin de formation</li>
-            <li>Préparation de l’examen de Fin de Formation</li>
-            <li>Clé USB : Support de stockage remis à l’apprenant sur demande, contenant les logiciels pédagogiques (AutoCAD, QGIS, CIVIL 3D…) et les documents à installer localement ou via assistance à distance</li>
-        </ul>
-        <p style="margin-top:1.2rem;">Pour toute question ou pour changer de formule, contactez le support via WhatsApp.</p>
+        <h2>Mon abonnement VIP 3 - Noura</h2>
+        <p>Vous bénéficiez de l'abonnement VIP 3 : Coaching individuel, accès aux événements exclusifs, priorisation totale du support.</p>
+        <a href="../mysubscription.html" class="cta-btn">Voir les avantages VIP 3</a>
+        <ul class="vip-benefits"></ul>
     </div>
 </body>
 </html>

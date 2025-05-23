@@ -23,21 +23,45 @@
         const translations = {
             fr: {
                 title: "Mon abonnement - Ahmed - TopoLearn",
-                heading: "Mon abonnement - Ahmed",
-                desc: "Consultez et gérez votre abonnement VIP ici.",
-                btn: "Voir les détails de l'abonnement"
+                heading: "Mon abonnement VIP II - Ahmed",
+                desc: "Vous bénéficiez de l'abonnement VIP II : Formations privées en petits groupes, support technique avancé.",
+                btn: "Voir les avantages VIP II",
+                benefits: [
+                    "Comprend tous les avantages du VIP 1",
+                    "💬 Assistance directe via WhatsApp",
+                    "📚 Fichiers PDF pour chaque séance",
+                    "📂 Modèles de rapports de stage en topographie",
+                    "🧑‍🏫 Formations en direct – en individuel ou en groupe",
+                    "Support technique pour l’installation des logiciels topographiques"
+                ]
             },
             en: {
                 title: "My Subscription - Ahmed - TopoLearn",
-                heading: "My Subscription - Ahmed",
-                desc: "View and manage your VIP subscription here.",
-                btn: "View Subscription Details"
+                heading: "My VIP II Subscription - Ahmed",
+                desc: "You have VIP II: Private group training, advanced technical support.",
+                btn: "See VIP II Benefits",
+                benefits: [
+                    "Includes all VIP 1 benefits",
+                    "💬 Direct assistance via WhatsApp",
+                    "📚 PDF files for each session",
+                    "📂 Internship report templates in topography",
+                    "🧑‍🏫 Live training – individual or group",
+                    "Technical support for installing topography software"
+                ]
             },
             ar: {
-                title: "اشتراكي - أحمد - توبوليرن",
-                heading: "اشتراكي - أحمد",
-                desc: "راجع وادِر اشتراكك VIP هنا.",
-                btn: "عرض تفاصيل الاشتراك"
+                title: "اشتراكي VIP II - أحمد - توبوليرن",
+                heading: "اشتراكي VIP II - أحمد",
+                desc: "لديك اشتراك VIP II: تدريبات خاصة في مجموعات صغيرة، دعم فني متقدم.",
+                btn: "عرض مزايا VIP II",
+                benefits: [
+                    "يشمل جميع مزايا VIP 1",
+                    "💬 دعم مباشر عبر WhatsApp",
+                    "📚 ملفات PDF لكل جلسة",
+                    "📂 نماذج تقارير تدريبية في الطبوغرافيا",
+                    "🧑‍🏫 تدريبات مباشرة – فردية أو جماعية",
+                    "دعم فني لتثبيت برامج الطبوغرافيا"
+                ]
             }
         };
         function setLang(lang) {
@@ -47,8 +71,21 @@
         function applyLang(lang) {
             document.title = translations[lang].title;
             document.querySelector('h2').textContent = translations[lang].heading;
-            document.querySelector('.container p').textContent = translations[lang].desc;
+            document.querySelector('.container p').innerHTML = translations[lang].desc;
             document.querySelector('.container a').textContent = translations[lang].btn;
+            // Show only VIP 2 benefits
+            let ul = document.querySelector('.vip-benefits');
+            if (!ul) {
+                ul = document.createElement('ul');
+                ul.className = 'vip-benefits';
+                document.querySelector('.container').appendChild(ul);
+            }
+            ul.innerHTML = '';
+            translations[lang].benefits.forEach(benefit => {
+                const li = document.createElement('li');
+                li.innerHTML = benefit;
+                ul.appendChild(li);
+            });
             if(lang === 'ar') {
                 document.body.dir = 'rtl';
                 document.body.style.textAlign = 'right';
@@ -63,9 +100,10 @@
         };
     </script>
     <div class="container">
-        <h2>Mon abonnement - Ahmed</h2>
-        <p>Consultez et gérez votre abonnement VIP ici.</p>
-        <a href="../mysubscription.html" class="cta-btn">Voir les détails de l'abonnement</a>
+        <h2>Mon abonnement VIP II - Ahmed</h2>
+        <p>Vous bénéficiez de l'abonnement VIP II : Formations privées en petits groupes, support technique avancé.</p>
+        <a href="../mysubscription.html" class="cta-btn">Voir les avantages VIP II</a>
+        <ul class="vip-benefits"></ul>
     </div>
 </body>
 </html>
