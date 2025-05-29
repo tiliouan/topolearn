@@ -10,7 +10,8 @@ body {
 header {
     background: #1565c0;
     color: #fff;
-    position: sticky;
+    /* Remove sticky positioning */
+    position: static;
     top: 0;
     z-index: 1000;
     box-shadow: 0 2px 8px rgba(21,101,192,0.08);
@@ -29,6 +30,40 @@ header {
     font-size: 2rem;
     font-weight: 700;
     letter-spacing: 1px;
+}
+
+/* Navbar controls styling */
+.navbar-controls {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.lang-buttons {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+}
+
+/* Login button specific styling for navbar */
+.login-btn {
+    background: linear-gradient(90deg, #ff9800 0%, #ffb74d 100%);
+    color: #fff;
+    padding: 0.6rem 1.5rem;
+    border-radius: 25px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.95rem;
+    border: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(255, 152, 0, 0.3);
+    white-space: nowrap;
+}
+
+.login-btn:hover {
+    background: linear-gradient(90deg, #f57c00 0%, #ff9800 100%);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(255, 152, 0, 0.4);
 }
 
 .nav-links {
@@ -79,6 +114,64 @@ header {
     margin-left: auto;
     margin-right: auto;
     animation: fadeInUp 1s;
+    text-align: center;
+}
+
+.section p {
+    text-align: center;
+    line-height: 1.6;
+}
+
+/* App Announcement Styles */
+.app-announcement {
+    background: linear-gradient(135deg, #4caf50 0%, #66bb6a 100%);
+    color: #fff;
+    padding: 2rem 1.5rem;
+    border-radius: 16px;
+    margin: 2rem 0;
+    text-align: center;
+    box-shadow: 0 4px 20px rgba(76, 175, 80, 0.3);
+    animation: pulse 2s infinite;
+}
+
+.app-announcement h3 {
+    color: #fff;
+    margin-bottom: 1rem;
+    font-size: 1.4rem;
+}
+
+.app-announcement p {
+    margin-bottom: 1.5rem;
+    font-size: 1.1rem;
+    line-height: 1.5;
+}
+
+.app-download-btn {
+    display: inline-block;
+    background: #fff;
+    color: #4caf50;
+    padding: 1rem 2rem;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 1.1rem;
+    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.app-download-btn:hover {
+    background: transparent;
+    color: #fff;
+    border-color: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+}
+
+@keyframes pulse {
+    0% { box-shadow: 0 4px 20px rgba(76, 175, 80, 0.3); }
+    50% { box-shadow: 0 4px 30px rgba(76, 175, 80, 0.5); }
+    100% { box-shadow: 0 4px 20px rgba(76, 175, 80, 0.3); }
 }
 
 /* Ajout d'une couleur de fond légère pour chaque section principale pour plus de clarté */
@@ -97,10 +190,22 @@ header {
     border-radius: 10px;
     margin: 2rem 0 1rem 0;
     box-shadow: 0 1px 8px rgba(255,179,0,0.10);
+    text-align: center;
 }
 .problem h3 {
     color: #ffb300;
     margin-top: 0;
+    text-align: center;
+}
+
+.problem ul {
+    text-align: center;
+    list-style: none;
+    padding: 0;
+}
+
+.problem li {
+    margin-bottom: 0.5rem;
 }
 
 @keyframes fadeInUp {
@@ -112,6 +217,7 @@ h1, h2, h3 {
     color: #1565c0;
     font-weight: 700;
     margin-bottom: 1rem;
+    text-align: center;
 }
 
 h2 {
@@ -162,8 +268,10 @@ h2::after {
     padding: 1rem 1.5rem 1rem 2.2rem;
     border-radius: 12px;
     font-weight: 500;
-    flex: 1 1 180px;
-    text-align: left;
+    flex: 0 1 auto;
+    min-width: fit-content;
+    max-width: 100%;
+    text-align: center;
     box-shadow: 0 1px 4px rgba(21,101,192,0.06);
     position: relative;
     margin-bottom: 0.5rem;
@@ -205,12 +313,21 @@ h2::after {
     margin-top: 0;
     color: #0d47a1;
     font-size: 1.3rem;
+    text-align: center;
+}
+
+.card p {
+    text-align: center;
+    line-height: 1.6;
+    margin: 1rem 0;
 }
 .card .price {
     font-size: 1.7rem;
     color: #1976d2;
     font-weight: 700;
     margin-top: 1.2rem;
+    text-align: center;
+    display: block;
 }
 .card::before {
     content: attr(data-vip);
@@ -245,12 +362,33 @@ h2::after {
     color: #222;
     margin: 0;
     box-shadow: 0 1px 4px rgba(67,160,71,0.08);
+    text-align: center;
 }
 .testimonials span {
     display: block;
     margin-top: 0.5rem;
     color: #388e3c;
     font-weight: 600;
+    text-align: center;
+}
+
+.software-sale-info {
+    text-align: center;
+    margin-top: 1.5rem;
+}
+
+.software-sale-info p {
+    margin-bottom: 1rem;
+}
+
+.software-sale-info ul {
+    list-style: none;
+    padding: 0;
+    text-align: center;
+}
+
+.software-sale-info li {
+    margin-bottom: 0.5rem;
 }
 
 form {
@@ -344,29 +482,207 @@ footer {
     color: #fff;
 }
 
-/* Responsive design amélioré pour mobile */
-@media (max-width: 900px) {
+/* Navbar controls styling */
+.navbar-controls {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.lang-buttons {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+}
+
+/* Login button specific styling for navbar */
+.login-btn {
+    background: linear-gradient(90deg, #ff9800 0%, #ffb74d 100%);
+    color: #fff;
+    padding: 0.6rem 1.5rem;
+    border-radius: 25px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.95rem;
+    border: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(255, 152, 0, 0.3);
+    white-space: nowrap;
+}
+
+.login-btn:hover {
+    background: linear-gradient(90deg, #f57c00 0%, #ff9800 100%);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(255, 152, 0, 0.4);
+}
+
+/* Enhanced Responsive Design */
+
+/* Large tablets and small laptops (1200px) */
+@media (max-width: 1200px) {
+    .navbar {
+        max-width: 100%;
+        padding: 1rem 2rem;
+    }
+    .section {
+        max-width: 95%;
+        margin: 1rem auto;
+        padding: 3rem 1.5rem 2rem 1.5rem;
+    }
+    .cards {
+        gap: 1.5rem;
+    }
+    .card {
+        min-width: 280px;
+        max-width: 300px;
+    }
+}
+
+/* Medium tablets (992px) */
+@media (max-width: 992px) {
+    .navbar {
+        padding: 1rem 1.5rem;
+    }
+    .logo {
+        font-size: 1.8rem;
+    }
+    .section {
+        padding: 3rem 1rem 2rem 1rem;
+    }
+    .cards {
+        gap: 1.5rem;
+        justify-content: center;
+    }
+    .card {
+        min-width: 240px;
+        max-width: 280px;
+    }
+    .features-list {
+        gap: 1rem;
+    }
+    .features-list li {
+        min-width: 280px;
+    }
+    h1 {
+        font-size: 2rem;
+    }
+    h2 {
+        font-size: 1.5rem;
+    }
+}
+
+/* Small tablets and large phones (768px) */
+@media (max-width: 768px) {
+    .navbar {
+        padding: 1rem;
+        flex-wrap: wrap;
+    }
+    .navbar-controls {
+        order: 3;
+        width: 100%;
+        justify-content: center;
+        margin-top: 1rem;
+        gap: 1rem;
+    }
+    .logo {
+        font-size: 1.6rem;
+        order: 1;
+    }
+    .menu-toggle {
+        order: 2;
+    }
+    .section {
+        padding: 2.5rem 0.8rem 1.8rem 0.8rem;
+        margin-bottom: 1.5rem;
+    }
     .cards {
         flex-direction: column;
         align-items: center;
+        gap: 1.5rem;
+    }
+    .card {
+        min-width: 320px;
+        max-width: 90%;
+        padding: 1.8rem 1.2rem;
     }
     .features-list {
         flex-direction: column;
-        align-items: stretch;
+        align-items: center;
+        gap: 0.8rem;
     }
-    .section {
-        padding: 2.5rem 0.5rem 1.5rem 0.5rem;
+    .features-list li {
+        max-width: 100%;
+        width: 100%;
+        min-width: auto;
+    }
+    .app-announcement {
+        padding: 1.5rem 1rem;
+        margin: 1.5rem 0;
+    }
+    .app-announcement h3 {
+        font-size: 1.3rem;
+    }
+    .app-announcement p {
+        font-size: 1rem;
+    }
+    .app-download-btn {
+        padding: 0.9rem 1.8rem;
+        font-size: 1rem;
+    }
+    h1 {
+        font-size: 1.8rem;
+    }
+    h2 {
+        font-size: 1.3rem;
+    }
+    h3 {
+        font-size: 1.1rem;
+    }
+    .cta-btn {
+        padding: 0.9rem 2rem;
+        font-size: 1rem;
+    }
+    form {
+        max-width: 90%;
+    }
+    .testimonials {
+        gap: 1rem;
+    }
+    .testimonials blockquote {
+        padding: 0.8rem 1.2rem;
+        font-size: 0.95rem;
     }
 }
+
+/* Mobile landscape and smaller tablets (700px) */
 @media (max-width: 700px) {
     .navbar {
         flex-direction: column;
         align-items: flex-start;
-        padding: 0.5rem 1rem;
+        padding: 0.8rem 1rem;
+    }
+    .navbar-controls {
+        width: 100%;
+        justify-content: space-between;
+        margin-top: 0.8rem;
+        gap: 0.5rem;
+        order: initial;
+    }
+    .lang-buttons {
+        gap: 0.3rem;
+    }
+    .lang-btn {
+        padding: 0.5rem 0.8rem;
+        font-size: 0.85rem;
+    }
+    .login-btn {
+        padding: 0.5rem 1.2rem;
+        font-size: 0.9rem;
     }
     .logo {
-        font-size: 1.3rem;
+        font-size: 1.4rem;
         margin-bottom: 0.5rem;
+        order: initial;
     }
     .nav-links {
         flex-direction: column;
@@ -374,39 +690,210 @@ footer {
         display: none;
         background: #1565c0;
         position: absolute;
-        top: 56px;
+        top: 100%;
         left: 0;
         padding: 1rem 0;
         box-shadow: 0 2px 8px rgba(21,101,192,0.12);
+        z-index: 1001;
     }
     .nav-links.active {
         display: flex;
     }
+    .nav-links li {
+        padding: 0.5rem 1rem;
+        text-align: center;
+    }
     .menu-toggle {
         display: flex;
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
     }
     .section {
-        padding: 1.5rem 0.2rem 1rem 0.2rem;
+        padding: 2rem 0.5rem 1.5rem 0.5rem;
+        margin-bottom: 1rem;
     }
     .cards {
-        gap: 1rem;
-    }
-    h2 {
-        font-size: 1.2rem;
+        flex-direction: column !important;
+        align-items: stretch !important;
+        gap: 1rem !important;
+        width: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        box-sizing: border-box !important;
     }
     .card {
-        min-width: 90vw;
-        max-width: 98vw;
-        padding: 1.2rem 0.5rem;
+        min-width: 0 !important;
+        max-width: 100% !important;
+        width: 100% !important;
+        margin: 0.5rem 0 !important;
+        padding-left: 0.7rem !important;
+        padding-right: 0.7rem !important;
+        box-sizing: border-box !important;
+    }
+    .features-list {
+        flex-direction: column !important;
+        align-items: stretch !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        box-sizing: border-box !important;
+    }
+    .features-list li {
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: 0 !important;
+        margin: 0.3rem 0 !important;
+        padding-left: 1.2rem !important;
+        padding-right: 0.7rem !important;
+        box-sizing: border-box !important;
+        word-break: break-word !important;
+        overflow-wrap: break-word !important;
+    }
+    .app-announcement {
+        padding: 1.5rem 1rem;
+        margin: 1.5rem 0;
+    }
+    .app-announcement h3 {
+        font-size: 1.3rem;
+    }
+    .app-announcement p {
+        font-size: 1rem;
+    }
+    .app-download-btn {
+        padding: 0.9rem 1.8rem;
+        font-size: 1rem;
+    }
+    h1 {
+        font-size: 1.8rem;
+    }
+    h2 {
+        font-size: 1.3rem;
+    }
+    h3 {
+        font-size: 1.1rem;
+    }
+    .cta-btn {
+        padding: 0.9rem 2rem;
+        font-size: 1rem;
+    }
+    form {
+        max-width: 90%;
+    }
+    .testimonials {
+        gap: 1rem;
+    }
+    .testimonials blockquote {
+        padding: 0.8rem 1.2rem;
+        font-size: 0.95rem;
     }
 }
+
+/* Mobile portrait (500px) */
 @media (max-width: 500px) {
-    .section {
-        padding: 1rem 0.1rem 0.5rem 0.1rem;
-        border-radius: 8px;
+    .navbar {
+        padding: 0.6rem 0.8rem;
+    }
+    .navbar-controls {
+        flex-direction: column;
+        gap: 0.8rem;
+        align-items: stretch;
+    }
+    .lang-buttons {
+        justify-content: center;
+        gap: 0.5rem;
+        flex-wrap: wrap;
+    }
+    .lang-btn {
+        padding: 0.4rem 0.7rem;
+        font-size: 0.8rem;
+        flex: 1;
+        min-width: 45px;
+    }
+    .login-btn {
+        padding: 0.6rem 1rem;
+        font-size: 0.85rem;
+        text-align: center;
     }
     .logo {
+        font-size: 1.2rem;
+    }
+    .section {
+        padding: 1.5rem 0.3rem 1rem 0.3rem;
+        border-radius: 12px;
+        margin-bottom: 0.8rem;
+    }
+    .app-announcement {
+        padding: 1.2rem 0.8rem;
+        margin: 1rem 0;
+        border-radius: 12px;
+    }
+    .app-announcement h3 {
         font-size: 1.1rem;
+    }
+    .app-announcement p {
+        font-size: 0.9rem;
+        line-height: 1.4;
+    }
+    .app-download-btn {
+        padding: 0.7rem 1.2rem;
+        font-size: 0.9rem;
+    }
+    .card {
+        min-width: 95%;
+        max-width: 98%;
+        padding: 1.2rem 0.8rem;
+    }
+    .card h3 {
+        font-size: 1.1rem;
+    }
+    .card p {
+        font-size: 0.85rem;
+        line-height: 1.4;
+    }
+    .card .price {
+        font-size: 1.3rem;
+    }
+    .features-list li {
+        padding: 0.8rem 0.6rem 0.8rem 2.2rem;
+        font-size: 0.9rem;
+        line-height: 1.4;
+    }
+    .features-list li::before {
+        left: 0.6rem;
+        top: 1rem;
+        font-size: 1rem;
+    }
+    .cta-btn {
+        padding: 0.8rem 1.5rem;
+        font-size: 0.9rem;
+    }
+    h1 {
+        font-size: 1.4rem;
+        line-height: 1.2;
+        margin-bottom: 0.8rem;
+    }
+    h2 {
+        font-size: 1.1rem;
+        line-height: 1.2;
+        margin-bottom: 1rem;
+    }
+    h3 {
+        font-size: 1rem;
+        margin-bottom: 0.8rem;
+    }
+    .problem {
+        padding: 0.8rem 1rem;
+        margin: 1rem 0;
+    }
+    .problem h3 {
+        font-size: 1rem;
+    }
+    .problem li {
+        font-size: 0.85rem;
+        line-height: 1.3;
+        margin-bottom: 0.4rem;
     }
     .whatsapp-float {
         width: 44px;
@@ -418,24 +905,141 @@ footer {
         width: 24px;
         height: 24px;
     }
-    .card {
-        min-width: 98vw;
-        max-width: 98vw;
-        padding: 1rem 0.3rem;
+    footer {
+        padding: 1.2rem 0.5rem 0.8rem 0.5rem;
+        font-size: 0.85rem;
     }
-    .features-list li {
-        padding: 0.7rem 0.5rem 0.7rem 2rem;
-        font-size: 0.98rem;
-    }
-    form {
-        max-width: 98vw;
+    .footer-owners {
+        font-size: 0.8rem;
+        margin-top: 0.5rem;
     }
 }
 
-/* Script pour le changement de langue (à intégrer dans le HTML) */
-<script>
-    function setLang(lang) {
-        alert('La version multilingue arrive bientôt ! (Langue choisie : ' + lang.toUpperCase() + ')');
-        // Ici, vous pouvez ajouter la logique pour changer la langue dynamiquement
+/* Extra small phones (400px) */
+@media (max-width: 400px) {
+    .navbar {
+        padding: 0.5rem 0.5rem;
     }
-</script>
+    .logo {
+        font-size: 1rem;
+    }
+    .lang-btn {
+        padding: 0.3rem 0.5rem;
+        font-size: 0.75rem;
+    }
+    .login-btn {
+        padding: 0.5rem 0.8rem;
+        font-size: 0.8rem;
+    }
+    .section {
+        padding: 1rem 0.2rem 0.8rem 0.2rem;
+        border-radius: 8px;
+    }
+    .card {
+        padding: 1rem 0.5rem;
+        min-width: 98%;
+    }
+    .card h3 {
+        font-size: 1rem;
+    }
+    .card p {
+        font-size: 0.8rem;
+    }
+    .card .price {
+        font-size: 1.2rem;
+    }
+    h1 {
+        font-size: 1.2rem;
+    }
+    h2 {
+        font-size: 1rem;
+    }
+    .features-list li {
+        padding: 0.6rem 0.4rem 0.6rem 2rem;
+        font-size: 0.8rem;
+    }
+    .features-list li::before {
+        left: 0.4rem;
+        top: 0.8rem;
+        font-size: 0.9rem;
+    }
+    .app-announcement {
+        padding: 1rem 0.5rem;
+    }
+    .app-announcement h3 {
+        font-size: 1rem;
+    }
+    .app-announcement p {
+        font-size: 0.8rem;
+    }
+    .app-download-btn {
+        padding: 0.6rem 1rem;
+        font-size: 0.8rem;
+    }
+    .cta-btn {
+        padding: 0.7rem 1.2rem;
+        font-size: 0.8rem;
+    }
+    .whatsapp-float {
+        width: 40px;
+        height: 40px;
+        right: 8px;
+        bottom: 8px;
+    }
+    .whatsapp-float img {
+        width: 20px;
+        height: 20px;
+    }
+}
+
+/* --- MOBILE RESPONSIVE FIX FOR CARDS AND FEATURES LIST --- */
+@media (max-width: 700px) {
+  .cards {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 1rem !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    box-sizing: border-box !important;
+  }
+  .card {
+    min-width: 0 !important;
+    max-width: 100% !important;
+    width: 100% !important;
+    margin: 0.5rem 0 !important;
+    padding-left: 0.7rem !important;
+    padding-right: 0.7rem !important;
+    box-sizing: border-box !important;
+  }
+  .features-list {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    box-sizing: border-box !important;
+  }
+  .features-list li {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    margin: 0.3rem 0 !important;
+    padding-left: 1.2rem !important;
+    padding-right: 0.7rem !important;
+    box-sizing: border-box !important;
+    word-break: break-word !important;
+    overflow-wrap: break-word !important;
+  }
+}
+@media (max-width: 500px) {
+  .card {
+    padding-left: 0.3rem !important;
+    padding-right: 0.3rem !important;
+  }
+  .features-list li {
+    padding-left: 0.7rem !important;
+    padding-right: 0.3rem !important;
+  }
+}

@@ -11,14 +11,16 @@
 <body>
     <header>
         <nav class="navbar" style="display: flex; align-items: center; justify-content: space-between;">
-            <div class="logo">
+            <a href="index.html" class="logo" style="text-decoration: none; color: inherit;">
                 <img src="logo.png" alt="TopoLearn Logo" style="height:48px;vertical-align:middle;"> TopoLearn
-            </div>
-            <div style="display:flex;align-items:center;gap:0.5rem;">
-                <button class="lang-btn" onclick="setLang('fr')">FR</button>
-                <button class="lang-btn" onclick="setLang('ar')">AR</button>
-                <button class="lang-btn" onclick="setLang('en')">EN</button>
-                <a href="login.html" class="cta-btn" style="padding:0.5rem 1.2rem; font-size:1rem; width:auto; min-width:unset; margin-left:1rem;">Connexion</a>
+            </a>
+            <div class="navbar-controls">
+                <div class="lang-buttons">
+                    <button class="lang-btn" onclick="setLang('fr')">FR</button>
+                    <button class="lang-btn" onclick="setLang('ar')">AR</button>
+                    <button class="lang-btn" onclick="setLang('en')">EN</button>
+                </div>
+                <a href="login.html" class="login-btn">Connexion</a>
             </div>
         </nav>
     </header>
@@ -27,6 +29,9 @@
             fr: {
                 title: "TopoLearn - Plateforme d'apprentissage en topographie",
                 accueil: "TopoLearn - Plateforme Marocaine d'Apprentissage de la Topographie",
+                appAnnouncement: "🎉 Nouvelle Application Mobile Disponible !",
+                appDescription: "Accédez à tous vos cours de topographie directement depuis votre smartphone. Téléchargez l'app TopoLearn maintenant !",
+                downloadApp: "Télécharger l'App",
                 probleme: "Problème à résoudre",
                 problemeList: [
                     "Difficile de trouver des cours clairs et structurés sur la topographie au Maroc",
@@ -51,18 +56,18 @@
                 membreVIP: "Membre VIP",
                 cards: [
                     {
-                        title: "VIP I",
-                        description: "Accès à tous les cours, guides exclusifs, assistance personnalisée, mises à jour prioritaires",
+                        title: "VIP 1",
+                        description: "Cours et vidéos exclusifs • Exercices corrigés • Contenu privé non accessible au grand public • Support par e-mail • Fichiers PDF téléchargeables",
                         price: "199 MAD/mois"
                     },
                     {
-                        title: "VIP II",
-                        description: "Tout VIP I + Formations privées en petits groupes, support technique avancé",
+                        title: "VIP 2",
+                        description: "Comprend tous les avantages du VIP 1 + Assistance directe via WhatsApp • Fichiers PDF pour chaque séance • Modèles de rapports de stage en topographie • Formations en direct – en individuel ou en groupe • Support technique pour l'installation des logiciels topographiques",
                         price: "499 MAD/mois"
                     },
                     {
                         title: "VIP 3",
-                        description: "Tout VIP II + Coaching individuel, accès aux événements exclusifs, priorisation totale du support",
+                        description: "Préparation à un niveau avancé ou au marché de l'emploi • Vidéos explicatives détaillées et pédagogiques • Assistance à distance complète (Zoom / TeamViewer) • Suivi personnalisé du projet de fin de formation • Cours multilingues : français, darija marocaine • Assistance technique mensuelle • Accès illimité aux vidéos • Exercices corrigés pour évaluer la progression • Maîtrise d'outils avancés : AutoCAD, QGIS, CIVIL 3D, Robot Structural • Accompagnement à la rédaction du rapport de fin de formation • Préparation de examen de Fin de Formation • Clé USB avec logiciels pédagogiques",
                         price: "999 MAD/mois"
                     }
                 ],
@@ -141,6 +146,9 @@
             en: {
                 title: "TopoLearn - Moroccan Topography Learning Platform",
                 accueil: "TopoLearn - Moroccan Platform for Learning Topography",
+                appAnnouncement: "🎉 New Mobile App Available!",
+                appDescription: "Access all your topography courses directly from your smartphone. Download the TopoLearn app now!",
+                downloadApp: "Download App",
                 probleme: "Problem to solve",
                 problemeList: [
                     "Hard to find clear and structured courses on topography in Morocco",
@@ -165,18 +173,18 @@
                 membreVIP: "VIP Member",
                 cards: [
                     {
-                        title: "VIP I",
-                        description: "Access to all courses, exclusive guides, personalized assistance, priority updates",
+                        title: "VIP 1",
+                        description: "Exclusive courses and videos • Corrected exercises • Private content not accessible to the general public • Email support • Downloadable PDF files",
                         price: "199 MAD/month"
                     },
                     {
-                        title: "VIP II",
-                        description: "All VIP I + Private training in small groups, advanced technical support",
+                        title: "VIP 2",
+                        description: "Includes all VIP 1 benefits + Direct assistance via WhatsApp • PDF files for each session • Topography internship report templates • Live training – individual or group • Technical support for topographic software installation",
                         price: "499 MAD/month"
                     },
                     {
                         title: "VIP 3",
-                        description: "All VIP II + Individual coaching, access to exclusive events, total support prioritization",
+                        description: "Preparation for advanced level or job market • Detailed and educational explanatory videos • Complete remote assistance (Zoom / TeamViewer) • Personalized follow-up of end-of-training project • Multilingual courses: French, Moroccan Darija • Monthly technical assistance • Unlimited access to videos • Corrected exercises to assess progress • Advanced tools mastery: AutoCAD, QGIS, CIVIL 3D, Robot Structural • Support for writing end-of-training report • End-of-training exam preparation • USB key with educational software",
                         price: "999 MAD/month"
                     }
                 ],
@@ -255,6 +263,9 @@
             ar: {
                 title: "توبوليرن - منصة التعلم الطبوغرافي",
                 accueil: "توبوليرن - المنصة المغربية لتعلم الطبوغرافيا",
+                appAnnouncement: "🎉 تطبيق الهاتف المحمول الجديد متاح الآن!",
+                appDescription: "احصل على جميع دورات الطبوغرافيا مباشرة من هاتفك الذكي. حمل تطبيق توبوليرن الآن!",
+                downloadApp: "تحميل التطبيق",
                 probleme: "المشكلة المراد حلها",
                 problemeList: [
                     "صعوبة العثور على دورات واضحة ومنظمة حول الطبوغرافيا في المغرب",
@@ -279,18 +290,18 @@
                 membreVIP: "عضو VIP",
                 cards: [
                     {
-                        title: "VIP I",
-                        description: "الوصول إلى جميع الدورات ، أدلة حصرية ، مساعدة شخصية ، تحديثات أولوية",
+                        title: "VIP 1",
+                        description: "دورات وفيديوهات حصرية • تمارين مصححة • محتوى خاص غير متاح للعامة • دعم عبر البريد الإلكتروني • ملفات PDF قابلة للتحميل",
                         price: "199 درهم / شهر"
                     },
                     {
-                        title: "VIP II",
-                        description: "كل ما في VIP I + تدريبات خاصة في مجموعات صغيرة ، دعم فني متقدم",
+                        title: "VIP 2",
+                        description: "يشمل جميع مزايا VIP 1 + مساعدة مباشرة عبر WhatsApp • ملفات PDF لكل جلسة • نماذج تقارير التدريب في الطبوغرافيا • تدريبات مباشرة - فردية أو جماعية • دعم فني لتثبيت البرامج الطبوغرافية",
                         price: "499 درهم / شهر"
                     },
                     {
                         title: "VIP 3",
-                        description: "كل ما في VIP II + تدريب فردي ، الوصول إلى أحداث حصرية ، أولوية كاملة للدعم",
+                        description: "إعداد لمستوى متقدم أو سوق العمل • فيديوهات تفسيرية مفصلة وتعليمية • مساعدة عن بُعد كاملة (Zoom / TeamViewer) • متابعة شخصية لمشروع نهاية التكوين • دورات متعددة اللغات: فرنسية، داريجة مغربية • مساعدة فنية شهرية • وصول غير محدود للفيديوهات • تمارين مصححة لتقييم التقدم • إتقان أدوات متقدمة: AutoCAD، QGIS، CIVIL 3D، Robot Structural • مرافقة في كتابة تقرير نهاية التكوين • إعداد لامتحان نهاية التكوين • مفتاح USB مع البرامج التعليمية",
                         price: "999 درهم / شهر"
                     }
                 ],
@@ -374,6 +385,15 @@
         function applyLang(lang) {
             document.title = translations[lang].title;
             document.querySelector('#accueil h1').textContent = translations[lang].accueil;
+            
+            // Update app announcement section
+            const appAnnouncement = document.querySelector('.app-announcement h3');
+            const appDescription = document.querySelector('.app-announcement p');
+            const appButton = document.querySelector('.app-download-btn');
+            if (appAnnouncement) appAnnouncement.textContent = translations[lang].appAnnouncement;
+            if (appDescription) appDescription.textContent = translations[lang].appDescription;
+            if (appButton) appButton.textContent = translations[lang].downloadApp;
+            
             document.querySelector('.problem h3').textContent = translations[lang].probleme;
             const problemList = document.querySelector('.problem ul');
             problemList.innerHTML = '';
@@ -507,6 +527,14 @@
         <section id="accueil" class="section accueil">
             <div class="container">
                 <h1>TopoLearn - Plateforme Marocaine d'Apprentissage de la Topographie</h1>
+                
+                <!-- App Announcement -->
+                <div class="app-announcement">
+                    <h3>🎉 Nouvelle Application Mobile Disponible !</h3>
+                    <p>Accédez à tous vos cours de topographie directement depuis votre smartphone. Téléchargez l'app TopoLearn maintenant !</p>
+                    <a href="https://cdn.discordapp.com/attachments/1192221320331657387/1377553610958966805/Topolearn.apk?ex=68396246&is=683810c6&hm=64da8e2727bf4318f079ae593d607fabcd04787131255f543455fa0ee343b798&" target="_blank" class="app-download-btn">Télécharger l'App</a>
+                </div>
+                
                 <div class="problem">
                     <h3>Problème à résoudre</h3>
                     <ul>
